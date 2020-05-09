@@ -5,16 +5,16 @@
 # Site
 title: Hexo
 subtitle: ''
-description: ''
+description: '学习记录，生活点滴'
 keywords:
-author: John Doe
-language: en
+author: ycj
+language: zh-CN
 timezone: ''
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: http://yoursite.com
-root: /
+url: https://yuanchangjian.github.io/hexo
+root: /hexo/
 permalink: :year/:month/:day/:title/
 permalink_defaults:
 pretty_urls:
@@ -93,7 +93,7 @@ ignore:
 # Extensions
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
-theme: landscape
+theme: next
 
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
