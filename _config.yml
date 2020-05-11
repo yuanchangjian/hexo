@@ -3,13 +3,13 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: Ycj's Notes
-subtitle: Quick notes
-description: '学习记录，生活点滴'
+title: Ycj's Blog
+subtitle: 
+description: 我是要成为海贼王的男人
 keywords:
 author: Ycj
 language: zh-CN
-timezone: ''
+timezone: 'Asia/Shanghai'
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
@@ -99,3 +99,15 @@ theme: hexo-theme-next
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
   type: ''
+
+search:
+  path: search.xml
+  field: post
+  format: html
+  limit: 10000
+
+# rss配置
+feed:
+  type: atom
+  path: atom.xml
+  limit: 20

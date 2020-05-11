@@ -46,7 +46,7 @@ language_switcher: false
 
 footer:
   # Specify the date when the site was setup. If not defined, current year will be used.
-  #since: 2015
+  since: 2020
 
   # Icon between year and copyright info.
   icon:
@@ -55,7 +55,7 @@ footer:
     # If you want to animate the icon, set it to true.
     animated: false
     # Change the color of icon, using Hex Code.
-    color: "#ff0000"
+    color: "#000000"
 
   # If not defined, `author` from Hexo `_config.yml` will be used.
   copyright:
@@ -82,7 +82,7 @@ footer:
 creative_commons:
   license: by-nc-sa
   sidebar: false
-  post: false
+  post: true
   language:
 
 
@@ -92,8 +92,8 @@ creative_commons:
 
 # Schemes
 #scheme: Muse
-#scheme: Mist
-scheme: Pisces
+scheme: Mist
+#scheme: Pisces
 #scheme: Gemini
 
 # Dark Mode
@@ -111,15 +111,13 @@ darkmode: false
 # External url should start with http:// or https://
 menu:
   home: / || fa fa-home
-  # about: /about/ || fa fa-user
-  tags: /tags/ || fa fa-tags
-  # categories: /categories/ || fa fa-th
+  categories: /categories/ || fa fa-th
   archives: /archives/ || fa fa-archive
+  tags: /tags/ || fa fa-tags
+  # about: /about/ || fa fa-user
   # schedule: /schedule/ || fa fa-calendar
   # sitemap: /sitemap.xml || fa fa-sitemap
   # commonweal: /404/ || fa fa-heartbeat
-  #about: /about #关于页面（需手动创建）
-  # search: /search #搜索页面（需手动创建）
 
 # Enable / Disable menu icons / item badges.
 menu_settings:
@@ -134,8 +132,8 @@ menu_settings:
 
 sidebar:
   # Sidebar Position.
-  position: left
-  #position: right
+  #position: left
+  position: right
 
   # Manual define the sidebar width. If commented, will be default for:
   # Muse | Mist: 320
@@ -159,7 +157,8 @@ sidebar:
 # Sidebar Avatar
 avatar:
   # Replace the default image and set the url here.
-  url: /images/avatar.gif
+  #url: /images/avatar.gif
+  url: /images/lufei.jpg
   # If true, the avatar will be dispalyed in circle.
   rounded: false
   # If true, the avatar will be rotated with the cursor.
@@ -173,7 +172,7 @@ site_state: true
 # Key is the link label showing to end users.
 # Value before `||` delimiter is the target permalink, value after `||` delimiter is the name of Font Awesome icon.
 social:
-  #GitHub: https://github.com/yourname || fab fa-github
+  GitHub: https://github.com/yuanchangjian || fab fa-github
   #E-Mail: mailto:yourname@gmail.com || fa fa-envelope
   #Weibo: https://weibo.com/yourname || fab fa-weibo
   #Google: https://plus.google.com/yourname || fab fa-google
@@ -194,10 +193,11 @@ links_settings:
   icon: fa fa-link
   title: Links
   # Available values: block | inline
-  layout: block
+  layout: inline
 
 links:
-  #Title: http://yoursite.com
+  CoolShell: https://coolshell.cn/
+  Eric: 'https://github.com/lizhaoting'
 
 # Table of Contents in the Sidebar
 # Front-matter variable (unsupport wrap expand_all).
@@ -239,7 +239,7 @@ post_meta:
   item_text: true
   created_at: true
   updated_at:
-    enable: true
+    enable: false
     another_day: true
   categories: true
 
@@ -369,7 +369,7 @@ back2top:
 
 # Reading progress bar
 reading_progress:
-  enable: false
+  enable: true
   # Available values: top | bottom
   position: top
   color: "#37c6c0"
@@ -697,7 +697,7 @@ leancloud_visitors:
   # Dependencies: https://github.com/theme-next/hexo-leancloud-counter-security
   # If you don't care about security in leancloud counter and just want to use it directly
   # (without hexo-leancloud-counter-security plugin), set `security` to `false`.
-  security: false
+  security: true
 
 # Another tool to show number of visitors to each article.
 # Visit https://console.firebase.google.com/u/0/ to get apiKey and projectId.
@@ -739,7 +739,7 @@ algolia_search:
 # Local Search
 # Dependencies: https://github.com/next-theme/hexo-generator-searchdb
 local_search:
-  enable: false
+  enable: true
   # If auto, trigger search by changing input.
   # If manual, trigger search by pressing enter key or search button.
   trigger: auto
