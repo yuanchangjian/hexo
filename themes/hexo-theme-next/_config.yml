@@ -273,7 +273,7 @@ follow_me:
   #Twitter: https://twitter.com/username || fab fa-twitter
   #Telegram: https://t.me/channel_name || fab fa-telegram
   #WeChat: /images/wechat_channel.jpg || fab fa-weixin
-  #RSS: /atom.xml || fa fa-rss
+  RSS: /atom.xml || fa fa-rss
 
 # Related popular posts
 # Dependencies: https://github.com/tea3/hexo-related-popular-posts
@@ -693,7 +693,7 @@ leancloud_visitors:
   app_id: 3JuUoRnX8SYQameS4hw3uw3Q-gzGzoHsz # <your app id>
   app_key: i9x4SF8TH0W8qvBNUboG4TY0 # <your app key>
   # Required for apps from CN region
-  server_url: https://3juuornx.lc-cn-n1-shared.com # <your server url>
+  server_url: # <your server url>
   # Dependencies: https://github.com/theme-next/hexo-leancloud-counter-security
   # If you don't care about security in leancloud counter and just want to use it directly
   # (without hexo-leancloud-counter-security plugin), set `security` to `false`.
