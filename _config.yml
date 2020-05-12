@@ -111,11 +111,3 @@ feed:
   type: atom
   path: atom.xml
   limit: 20
-
-leancloud_counter_security:
-  enable_sync: true
-  app_id: 3JuUoRnX8SYQameS4hw3uw3Q-gzGzoHsz
-  app_key: i9x4SF8TH0W8qvBNUboG4TY0
-  server_url: # Required for apps from CN region, e.g. https://leancloud.cn
-  username: # Will be asked while deploying if is left blank
-  password:  # Recommmended to be left blank. Will be asked while deploying if is left blank

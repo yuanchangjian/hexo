@@ -160,7 +160,7 @@ avatar:
   #url: /images/avatar.gif
   url: /images/lufei.jpg
   # If true, the avatar will be dispalyed in circle.
-  rounded: false
+  rounded: true
   # If true, the avatar will be rotated with the cursor.
   rotated: false
 
@@ -690,7 +690,7 @@ cnzz_siteid:
 # AppID and AppKey are recommended to be the same as valine's for counter compatibility.
 # Do not enable both `valine.visitor` and `leancloud_visitors`.
 leancloud_visitors:
-  enable: true
+  enable: false
   app_id: 3JuUoRnX8SYQameS4hw3uw3Q-gzGzoHsz # <your app id>
   app_key: i9x4SF8TH0W8qvBNUboG4TY0 # <your app key>
   # Required for apps from CN region
@@ -712,7 +712,7 @@ firestore:
 # Show Views / Visitors of the website / page with busuanzi.
 # Get more information on http://ibruce.info/2015/04/04/busuanzi
 busuanzi_count:
-  enable: false
+  enable: true
   total_visitors: true
   total_visitors_icon: fa fa-user
   total_views: true
