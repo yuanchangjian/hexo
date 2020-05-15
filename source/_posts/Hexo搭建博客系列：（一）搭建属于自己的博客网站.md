@@ -74,9 +74,7 @@ Hexo主题安装非常简单，只需要将主题文件拷贝至站点目录```t
 $ cd <folder>
 $ npm run server
 ```
-使用浏览器访问```http://localhost:4000```，检查站点是否正确运行。
-
-![检查启动图片]()
+使用浏览器访问```http://localhost:4000```，检查站点是否正确运行。![image-20200515102636697](https://yuanchangjian.github.io/cloudImage/images/20200515102636697.png)
 
 现在，你已经成功安装并启用了 NexT 主题。下一步我们将对主题进行个性化配置。
 
@@ -92,8 +90,6 @@ title: Ycj's Blog
 ```
 
 ### 设置站点描述
-
-
 
 编辑```站点配置文件```， 设置```description```字段为你的站点描述。
 ```
@@ -158,8 +154,6 @@ date: 2020-05-12 10:55:35
 ---
 ```
 
-
-
 #### 添加「标签」页面
 
 ```
@@ -177,8 +171,6 @@ date: 2020-05-12 10:56:30
 ---
 ```
 
-
-
 #### 文章中添加标签和分类
 
 你可以在```文章```中的```Front-matter```中增加分类和标签，如：
@@ -193,8 +185,6 @@ tags:
 - Games
 ---
 ```
-
-
 
 {% note danger %} 
 
@@ -222,8 +212,6 @@ categories:
 此时这篇文章同时包括三个分类： `PlayStation` 和 `Games` 分别都是父分类 `Diary` 的子分类，同时 `Life` 是一个没有子分类的分类。
 
 {% endnote %}
-
-
 
 ### 设置侧栏
 
@@ -321,13 +309,105 @@ footer:
   since: 2020
 ```
 
-![整体效果图片]()
+现在，你已经完成了主题的基本配置，页面展示如下所示：
 
+![image-20200515110048107](https://yuanchangjian.github.io/cloudImage/images/20200515110050.png)
 
+****
 
 ## 集成常用的第三方服务
 
 ### 搜索服务
 
+相较官网提供几种[搜索服务](http://theme-next.iissnan.com/third-party-services.html#analytics-system)，我这里使用的是```Local Search```（这个配置最简单，站内查文章够用，当然想百度统计也比较常用，喜欢的可以自行添加），提供一个页面快速文章的功能。
 
+1. 安装 `hexo-generator-searchdb`，在站点的根目录下执行以下命令：
+
+   ```
+   $ npm install hexo-generator-searchdb --save
+   ```
+
+2. 编辑 **站点配置文件**，新增以下内容到任意位置：
+
+   ```
+   search:
+     path: search.xml
+     field: post
+     format: html
+     limit: 10000
+   ```
+
+3. 编辑 **主题配置文件**，启用本地搜索功能：
+
+   ```
+   # Local search
+   local_search:
+     enable: true
+   ```
+
+重启应用，效果如下：![image-20200515110258588](https://yuanchangjian.github.io/cloudImage/images/20200515110300.png)
+
+
+
+### 数据统计与分析
+
+我这里使用了[不蒜子统计](http://theme-next.iissnan.com/third-party-services.html#analytics-busuanzi)+LeanCloud实现站内的数据统计，这里提及一下，不蒜子现在版本对于首页多个文章无法统计阅读量，所以我i将不蒜子是用来统计网站访问量和用户量，LeanCloud用来统计文章的阅读量。
+
+* 不蒜子统计
+
+  编辑主题配置文件，找到```busuanzi_count```字段，修改为如下所示:
+
+  ```
+  busuanzi_count:
+    enable: true
+    total_visitors: true
+    total_visitors_icon: fa fa-user
+    total_views: true
+    total_views_icon: fa fa-eye
+    post_views: false
+    post_views_icon: fa fa-eye
+  ```
+
+效果图如下（统计数不对是因为开发环境如此，部署会正确展示）：![image-20200515111951296](https://yuanchangjian.github.io/cloudImage/images/20200515111953.png)
+
+* [LeanCloud](https://www.leancloud.cn/)
+
+1. 创建应用
+
+   应用名随意填写，不满意后续可更改。
+
+   ![image-20200515113112829](https://yuanchangjian.github.io/cloudImage/images/20200515113114.png)
+
+2. 新建Class
+
+   为了保证我们前面对NexT主题的修改兼容，此处的新建Class名字必须为```Counter```。
+
+   ![image-20200515113916349](https://yuanchangjian.github.io/cloudImage/images/20200515113917.png)
+
+   ![image-20200515113948683](https://yuanchangjian.github.io/cloudImage/images/20200515113950.png)
+
+   ![image-20200515114552823](https://yuanchangjian.github.io/cloudImage/images/20200515115930.png)
+
+
+
+3. 配置LeanCloud
+
+   获取```app_id```和```app_key```
+
+   ![image-20200515115918389](https://yuanchangjian.github.io/cloudImage/images/20200515115919.png)
+
+   编辑主题配置文件，找到```leancloud_visitors```字段，将你的```app_id```和```app_key```填上，并修改```security```为```false```，修改为如下所示:
+
+   ```
+   leancloud_visitors:
+     enable: ture
+     app_id: xxx # <your app id>
+     app_key: xxx # <your app key>
+     server_url: # <your server url>
+     security: false
+   ```
+
+
+
+# 部署至GitHub Pages
 
