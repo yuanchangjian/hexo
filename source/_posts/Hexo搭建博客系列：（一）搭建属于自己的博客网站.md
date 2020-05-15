@@ -315,6 +315,8 @@ footer:
 
 ****
 
+
+
 ## 集成常用的第三方服务
 
 ### 搜索服务
@@ -396,7 +398,7 @@ footer:
 
    ![image-20200515115918389](https://yuanchangjian.github.io/cloudImage/images/20200515115919.png)
 
-   编辑主题配置文件，找到```leancloud_visitors```字段，将你的```app_id```和```app_key```填上，并修改```security```为```false```，修改为如下所示:
+   编辑主题配置文件，找到`leancloud_visitors`字段，将你的`app_id`和`app_key`填上，并修改`security`为`false`，修改为如下所示:
 
    ```
    leancloud_visitors:
@@ -411,3 +413,56 @@ footer:
 
 # 部署至GitHub Pages
 
+部署参考[官网部署教程](https://hexo.io/zh-cn/docs/github-pages)，这里我列出来是因为我想通过`<GitHub 用户名>.github.io`访问博客，但我发现`GitHub Pages`的部署分支只能为`master`，所以我修改了`.travis.yaml`文件，使我们在其他分支中（如：`hexo`）开发，而通过Travis CI工具部署至`master`分支，从而保证`<你的 GitHub 用户名>.github.io`能正常访问。
+
+如果你不需要`<GitHub 用户名>.github.io`如此访问，可以接受`<GitHub 用户名>.github.io/xxx`访问就无需更改`.travis.yaml`文件，可以跳过本小节教程，直接参考官网部署教程。
+
+1. 新建一个 repository。如果你希望你的站点能通过 `<你的 GitHub 用户名>.github.io` 域名访问，你的 repository 应该直接命名为 `<你的 GitHub 用户名>.github.io`。
+
+2. 将你的 Hexo 站点文件夹推送到 repository 中。默认情况下不应该 `public` 目录将不会被推送到 repository 中，你应该检查 `.gitignore` 文件中是否包含 `public` 一行，如果没有请加上。
+
+3. 将 [Travis CI](https://github.com/marketplace/travis-ci) 添加到你的 GitHub 账户中。
+
+4. 前往 GitHub 的 [Applications settings](https://github.com/settings/installations)，配置 Travis CI 权限，使其能够访问你的 repository。
+
+5. 你应该会被重定向到 Travis CI 的页面。如果没有，请 [手动前往](https://travis-ci.com/)。
+
+6. 在浏览器新建一个标签页，前往 GitHub [新建 Personal Access Token](https://github.com/settings/tokens)，只勾选 `repo` 的权限并生成一个新的 Token。Token 生成后请复制并保存好。
+
+7. 回到 Travis CI，前往你的 repository 的设置页面，在 **Environment Variables** 下新建一个环境变量，**Name** 为 `GH_TOKEN`，**Value** 为刚才你在 GitHub 生成的 Token。确保 **DISPLAY VALUE IN BUILD LOG** 保持 **不被勾选** 避免你的 Token 泄漏。点击 **Add** 保存。
+
+8. **在你的 Hexo 站点文件夹中新建一个 `.travis.yml` 文件：**
+
+   ```
+   sudo: false
+   language: node_js
+   node_js:
+     - 10 # use nodejs v10 LTS
+   cache: npm
+   branches:
+     only:
+       - hexo # build master branch only (修改点：master -> hexo)
+   script:
+     - hexo generate # generate static files
+   deploy:
+     provider: pages
+     skip-cleanup: true
+     github-token: $GH_TOKEN
+     keep-history: true
+     on:
+       branch: hexo # (修改点：master -> hexo)
+     local-dir: public
+     target-branch: master # (增加项：将hexo分支编译到master分支部署)
+   ```
+
+   
+
+# 参考资料
+
+* [Hexo官方网站](https://hexo.io/zh-cn/)
+
+* [Hexo官方使用文档](http://theme-next.iissnan.com/)
+
+* [为NexT主题添加文章阅读量统计功能](https://notes.doublemine.me/2015-10-21-%E4%B8%BANexT%E4%B8%BB%E9%A2%98%E6%B7%BB%E5%8A%A0%E6%96%87%E7%AB%A0%E9%98%85%E8%AF%BB%E9%87%8F%E7%BB%9F%E8%AE%A1%E5%8A%9F%E8%83%BD.html#%E9%85%8D%E7%BD%AELeanCloud)
+
+* [Travis CI官方说明文档](https://docs.travis-ci.com/)
