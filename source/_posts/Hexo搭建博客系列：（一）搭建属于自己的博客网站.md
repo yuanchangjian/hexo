@@ -125,7 +125,7 @@ scheme: Mist
 ```
 
 ### 设置菜单
-NexT默认菜单项如下所示，我当前使用了```home(首页)```、```categories(分类)```、```archives(归档)```、```tags(标签)```和```搜索```（后续提到）。
+NexT默认菜单项如下所示，我当前使用了```home(首页)```、```categories(分类)```、```archives(归档)```、```tags(标签)```。
 ```
 menu:
   home: / || fa fa-home
@@ -268,15 +268,6 @@ links:
   Eric: 'https://github.com/lizhaoting'
 ```
 
-编辑```主题配置文件```，在```links_settings```下修改为下列配置。链接项布局默认为```block```，我觉得和我这个风格不搭，我改为```inline```。
-```
-links_settings:
-  icon: fa fa-link
-  title: 友情链接
-  # Available values: block | inline
-  layout: inline
-```
-
 ### 添加腾讯公益404页面
 腾讯公益404页面，寻找丢失儿童，让大家一起关注此项公益事业！
 使用方法，新建```404.html```页面，放到主题的```source```目录下，内容如下：
@@ -321,7 +312,7 @@ footer:
 
 ### 搜索服务
 
-相较官网提供几种[搜索服务](http://theme-next.iissnan.com/third-party-services.html#analytics-system)，我这里使用的是```Local Search```（这个配置最简单，站内查文章够用，当然想百度统计也比较常用，喜欢的可以自行添加），提供一个页面快速文章的功能。
+相较官网提供几种[搜索服务](http://theme-next.iissnan.com/third-party-services.html#analytics-system)，我这里使用的是```Local Search```，提供一个页面快速文章的功能。
 
 1. 安装 `hexo-generator-searchdb`，在站点的根目录下执行以下命令：
 
@@ -413,11 +404,11 @@ footer:
 
 # 部署至GitHub Pages
 
-部署参考[官网部署教程](https://hexo.io/zh-cn/docs/github-pages)，这里我列出来是因为我想通过`<GitHub 用户名>.github.io`访问博客，但我发现`GitHub Pages`的部署分支只能为`master`，所以我修改了`.travis.yaml`文件，使我们在其他分支中（如：`hexo`）开发，而通过Travis CI工具部署至`master`分支，从而保证`<你的 GitHub 用户名>.github.io`能正常访问。
+部署参考[官网部署教程](https://hexo.io/zh-cn/docs/github-pages)，这里我列出来是因为我想通过`<GitHub 用户名>.github.io`访问博客，但我发现`GitHub Pages`的部署分支只能为`master`，所以我修改了`.travis.yaml`文件，使我们在其他分支中（如：`hexo`）开发，而通过Travis CI工具部署至`master`分支，从而保证`<GitHub 用户名>.github.io`能正常访问。
 
 如果你不需要`<GitHub 用户名>.github.io`如此访问，可以接受`<GitHub 用户名>.github.io/xxx`访问就无需更改`.travis.yaml`文件，可以跳过本小节教程，直接参考官网部署教程。
 
-1. 新建一个 repository。如果你希望你的站点能通过 `<你的 GitHub 用户名>.github.io` 域名访问，你的 repository 应该直接命名为 `<你的 GitHub 用户名>.github.io`。
+1. 新建一个 repository。如果你希望你的站点能通过 `<GitHub 用户名>.github.io` 域名访问，你的 repository 应该直接命名为 `<GitHub 用户名>.github.io`。
 
 2. 将你的 Hexo 站点文件夹推送到 repository 中。默认情况下不应该 `public` 目录将不会被推送到 repository 中，你应该检查 `.gitignore` 文件中是否包含 `public` 一行，如果没有请加上。
 
