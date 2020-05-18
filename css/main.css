@@ -1270,7 +1270,7 @@ pre code {
 .menu {
   margin-top: 20px;
   padding-left: 0;
-  text-align: right;
+  text-align: center;
 }
 .menu-item {
   display: inline-block;
@@ -2730,4 +2730,7 @@ hr {
 }
 .post-toc .nav .nav-level-1 > .nav-child {
   display: block;
+}
+.menu {
+  text-align: right;
 }

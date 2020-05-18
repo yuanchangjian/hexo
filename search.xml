@@ -3,12 +3,68 @@
   <entry>
     <title>Hexo搭建博客系列：（三）Typora+PicGo实现图片上传功能</title>
     <url>/2020/05/12/Hexo%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2%E7%B3%BB%E5%88%97%EF%BC%9A%EF%BC%88%E4%B8%89%EF%BC%89Typora-PicGo%E5%AE%9E%E7%8E%B0%E5%9B%BE%E7%89%87%E4%B8%8A%E4%BC%A0%E5%8A%9F%E8%83%BD/</url>
-    <content><![CDATA[]]></content>
+    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>编写markdown时经常会有插入图片的需求，而粘贴的图片的地址为本地地址，部署时是无法查看的。办法总比问题多，下面教大家使用Typora+PicGo+GitHub图床给markdown愉快的添加图片。</p>
+<a id="more"></a>
+
+
+
+<h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><p>自行下载安装如下软件：</p>
+<ul>
+<li><a href="https://www.typora.io/" target="_blank" rel="noopener">Typora</a></li>
+<li><a href="https://github.com/Molunerfinn/PicGo/releases" target="_blank" rel="noopener">PicGo</a></li>
+</ul>
+<h2 id="Github图床"><a href="#Github图床" class="headerlink" title="Github图床"></a>Github图床</h2><ul>
+<li>新建repository，命名为<code>cloudImage</code></li>
+<li>添加访问token，复制并保存token（只会出现一次）</li>
+</ul>
+<p><img src="https://yuanchangjian.github.io/cloudImage/images/20200518162329.png" alt="image-20200518162328069"></p>
+<p><img src="https://yuanchangjian.github.io/cloudImage/images/20200518162424.png" alt="image-20200518162420210"></p>
+<p>​    <img src="https://yuanchangjian.github.io/cloudImage/images/20200518162122.png" alt="image-20200518162120925"></p>
+<p>​    <img src="https://yuanchangjian.github.io/cloudImage/images/20200518162215.png" alt="image-20200518162213723"></p>
+<h1 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h1><h2 id="配置typora"><a href="#配置typora" class="headerlink" title="配置typora"></a>配置typora</h2><p>打开typora，选择左上角<code>文件</code>，选择<code>偏好设置</code>，配置成如下所示：</p>
+<p><img src="https://yuanchangjian.github.io/cloudImage/images/20200518160024.png" alt="image-20200518155153969"></p>
+<h2 id="配置PicGo"><a href="#配置PicGo" class="headerlink" title="配置PicGo"></a>配置PicGo</h2><h3 id="图床设置"><a href="#图床设置" class="headerlink" title="图床设置"></a>图床设置</h3><p>根据上述新建的GitHub图床进行配置（我这里在仓库内创建了一个<code>images</code>目录存储图片）。</p>
+<p><img src="https://yuanchangjian.github.io/cloudImage/images/20200518162932.png" alt="image-20200518162929836"></p>
+<h3 id="开启时间戳重命名"><a href="#开启时间戳重命名" class="headerlink" title="开启时间戳重命名"></a>开启时间戳重命名</h3><p>防止GitHub重名上传失败。</p>
+<p> <img src="https://yuanchangjian.github.io/cloudImage/images/20200518163356.png" alt="image-20200518163355105"></p>
+<h1 id="使用说明"><a href="#使用说明" class="headerlink" title="使用说明"></a>使用说明</h1><p>将本地图片放入Typora时，会出现上传地图选项，点击上传图片即可。这里我演示一下图片地址的变化：</p>
+<p><img src="https://yuanchangjian.github.io/cloudImage/images/20200518164244.png" alt="image-20200518164240350"></p>
+<p>上传后图片地址：</p>
+<p><img src="https://yuanchangjian.github.io/cloudImage/images/20200518164336.png" alt="image-20200518164334296"></p>
+]]></content>
+      <categories>
+        <category>Hexo搭建博客系列</category>
+      </categories>
+      <tags>
+        <tag>Hexo</tag>
+      </tags>
   </entry>
   <entry>
     <title>Hexo搭建博客系列：（二）自定义样式优化主题</title>
     <url>/2020/05/12/Hexo%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2%E7%B3%BB%E5%88%97%EF%BC%9A%EF%BC%88%E4%BA%8C%EF%BC%89%E8%87%AA%E5%AE%9A%E4%B9%89%E6%A0%B7%E5%BC%8F%E4%BC%98%E5%8C%96%E4%B8%BB%E9%A2%98/</url>
-    <content><![CDATA[]]></content>
+    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>本教程是我对Next主题的一些自定义样式修改，主要通过两种方式：修改<code>主题配置文件</code>和自定义样式。</p>
+<a id="more"></a>
+
+<h2 id="主题配置文件"><a href="#主题配置文件" class="headerlink" title="主题配置文件"></a>主题配置文件</h2><h3 id="隐藏文章更新日期"><a href="#隐藏文章更新日期" class="headerlink" title="隐藏文章更新日期"></a>隐藏文章更新日期</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">post_meta:</span><br><span class="line">  item_text: true</span><br><span class="line">  created_at: true</span><br><span class="line">  updated_at:</span><br><span class="line">    enable: false</span><br><span class="line">    another_day: true</span><br><span class="line">  categories: true</span><br></pre></td></tr></table></figure>
+
+<h3 id="友情链接行内布局"><a href="#友情链接行内布局" class="headerlink" title="友情链接行内布局"></a>友情链接行内布局</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">links_settings:</span><br><span class="line">  icon: fa fa-link</span><br><span class="line">  title: Links</span><br><span class="line">  # Available values: block | inline</span><br><span class="line">  layout: inline</span><br></pre></td></tr></table></figure>
+
+<h3 id="footer图标颜色"><a href="#footer图标颜色" class="headerlink" title="footer图标颜色"></a>footer图标颜色</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">footer:</span><br><span class="line">  ...</span><br><span class="line">  icon:</span><br><span class="line">    # Icon name in Font Awesome. See: https:&#x2F;&#x2F;fontawesome.com&#x2F;icons</span><br><span class="line">    name: fa fa-heart</span><br><span class="line">    # If you want to animate the icon, set it to true.</span><br><span class="line">    animated: false</span><br><span class="line">    # Change the color of icon, using Hex Code.</span><br><span class="line">    color: &quot;#000000&quot;&#39;</span><br><span class="line">  ...</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="自定义样式"><a href="#自定义样式" class="headerlink" title="自定义样式"></a>自定义样式</h2><p>在主题目录的<code>/source/css</code>目录下新建<code>_custom.styl</code>文件。内容如下所示：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;*</span><br><span class="line">* 文章目录显示多级标题,文章展示所有二级菜单</span><br><span class="line">*&#x2F;</span><br><span class="line">&#x2F;&#x2F;显示一级标题下的子标题</span><br><span class="line">.post-toc .nav .nav-level-1 &gt; .nav-child &#123;</span><br><span class="line">   display: block;</span><br><span class="line">&#125;</span><br><span class="line">&#x2F;&#x2F;显示二级标题下的子标题</span><br><span class="line">&#x2F;*.post-toc .nav .nav-level-2 &gt; .nav-child &#123;</span><br><span class="line">   display: block;</span><br><span class="line">&#125;&#x2F;*</span><br><span class="line">&#x2F;&#x2F;显示三级标题下的子标题</span><br><span class="line">&#x2F;*.post-toc .nav .nav-level-3 &gt; .nav-child &#123;</span><br><span class="line">   display: block;</span><br><span class="line">&#125;*&#x2F;</span><br><span class="line"></span><br><span class="line">&#x2F;*</span><br><span class="line">* 导航栏菜单右对齐</span><br><span class="line">*&#x2F;</span><br><span class="line">.menu &#123;</span><br><span class="line">  text-align: right;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+]]></content>
+      <categories>
+        <category>Hexo搭建博客系列</category>
+      </categories>
+      <tags>
+        <tag>Hexo</tag>
+      </tags>
   </entry>
   <entry>
     <title>Hexo搭建博客系列：（一）搭建属于自己的博客网站</title>
@@ -67,7 +123,7 @@
 <p>我比较喜欢<code>Mist</code>这种风格，你可以自己都尝试一下。</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># Schemes</span><br><span class="line">#scheme: Muse</span><br><span class="line">scheme: Mist</span><br><span class="line">#scheme: Pisces</span><br><span class="line">#scheme: Gemini</span><br></pre></td></tr></table></figure>
 
-<h3 id="设置菜单"><a href="#设置菜单" class="headerlink" title="设置菜单"></a>设置菜单</h3><p>NexT默认菜单项如下所示，我当前使用了<code>home(首页)</code>、<code>categories(分类)</code>、<code>archives(归档)</code>、<code>tags(标签)</code>和<code>搜索</code>（后续提到）。</p>
+<h3 id="设置菜单"><a href="#设置菜单" class="headerlink" title="设置菜单"></a>设置菜单</h3><p>NexT默认菜单项如下所示，我当前使用了<code>home(首页)</code>、<code>categories(分类)</code>、<code>archives(归档)</code>、<code>tags(标签)</code>。</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">menu:</span><br><span class="line">  home: &#x2F; || fa fa-home</span><br><span class="line">  categories: &#x2F;categories&#x2F; || fa fa-th</span><br><span class="line">  archives: &#x2F;archives&#x2F; || fa fa-archive</span><br><span class="line">  tags: &#x2F;tags&#x2F; || fa fa-tags</span><br><span class="line">  # about: &#x2F;about&#x2F; || fa fa-user</span><br><span class="line">  # schedule: &#x2F;schedule&#x2F; || fa fa-calendar</span><br><span class="line">  # sitemap: &#x2F;sitemap.xml || fa fa-sitemap</span><br><span class="line">  # commonweal: &#x2F;404&#x2F; || fa fa-heartbeat</span><br></pre></td></tr></table></figure>
 
 <h4 id="添加「分类」页面"><a href="#添加「分类」页面" class="headerlink" title="添加「分类」页面"></a>添加「分类」页面</h4><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ cd &lt;folder&gt;</span><br><span class="line">$ hexo new page categories</span><br></pre></td></tr></table></figure>
@@ -116,9 +172,6 @@
 <h3 id="设置友情链接"><a href="#设置友情链接" class="headerlink" title="设置友情链接"></a>设置友情链接</h3><p>编辑<code>主题配置文件</code>，在<code>links</code>下添加你的友情链接地址：</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">links:</span><br><span class="line">  CoolShell: https:&#x2F;&#x2F;coolshell.cn&#x2F;</span><br><span class="line">  Eric: &#39;https:&#x2F;&#x2F;github.com&#x2F;lizhaoting&#39;</span><br></pre></td></tr></table></figure>
 
-<p>编辑<code>主题配置文件</code>，在<code>links_settings</code>下修改为下列配置。链接项布局默认为<code>block</code>，我觉得和我这个风格不搭，我改为<code>inline</code>。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">links_settings:</span><br><span class="line">  icon: fa fa-link</span><br><span class="line">  title: 友情链接</span><br><span class="line">  # Available values: block | inline</span><br><span class="line">  layout: inline</span><br></pre></td></tr></table></figure>
-
 <h3 id="添加腾讯公益404页面"><a href="#添加腾讯公益404页面" class="headerlink" title="添加腾讯公益404页面"></a>添加腾讯公益404页面</h3><p>腾讯公益404页面，寻找丢失儿童，让大家一起关注此项公益事业！<br>使用方法，新建<code>404.html</code>页面，放到主题的<code>source</code>目录下，内容如下：</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;!DOCTYPE HTML&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">  &lt;meta http-equiv&#x3D;&quot;content-type&quot; content&#x3D;&quot;text&#x2F;html;charset&#x3D;utf-8;&quot;&#x2F;&gt;</span><br><span class="line">  &lt;meta http-equiv&#x3D;&quot;X-UA-Compatible&quot; content&#x3D;&quot;IE&#x3D;edge,chrome&#x3D;1&quot; &#x2F;&gt;</span><br><span class="line">  &lt;meta name&#x3D;&quot;robots&quot; content&#x3D;&quot;all&quot; &#x2F;&gt;</span><br><span class="line">  &lt;meta name&#x3D;&quot;robots&quot; content&#x3D;&quot;index,follow&quot;&#x2F;&gt;</span><br><span class="line">  &lt;link rel&#x3D;&quot;stylesheet&quot; type&#x3D;&quot;text&#x2F;css&quot; href&#x3D;&quot;https:&#x2F;&#x2F;qzone.qq.com&#x2F;gy&#x2F;404&#x2F;style&#x2F;404style.css&quot;&gt;</span><br><span class="line">&lt;&#x2F;head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">  &lt;script type&#x3D;&quot;text&#x2F;plain&quot; src&#x3D;&quot;http:&#x2F;&#x2F;www.qq.com&#x2F;404&#x2F;search_children.js&quot;</span><br><span class="line">          charset&#x3D;&quot;utf-8&quot; homePageUrl&#x3D;&quot;&#x2F;&quot;</span><br><span class="line">          homePageName&#x3D;&quot;回到我的主页&quot;&gt;</span><br><span class="line">  &lt;&#x2F;script&gt;</span><br><span class="line">  &lt;script src&#x3D;&quot;https:&#x2F;&#x2F;qzone.qq.com&#x2F;gy&#x2F;404&#x2F;data.js&quot; charset&#x3D;&quot;utf-8&quot;&gt;&lt;&#x2F;script&gt;</span><br><span class="line">  &lt;script src&#x3D;&quot;https:&#x2F;&#x2F;qzone.qq.com&#x2F;gy&#x2F;404&#x2F;page.js&quot; charset&#x3D;&quot;utf-8&quot;&gt;&lt;&#x2F;script&gt;</span><br><span class="line">&lt;&#x2F;body&gt;</span><br><span class="line">&lt;&#x2F;html&gt;</span><br></pre></td></tr></table></figure>
 
@@ -128,7 +181,7 @@
 <p>现在，你已经完成了主题的基本配置，页面展示如下所示：</p>
 <p><img src="https://yuanchangjian.github.io/cloudImage/images/20200515110050.png" alt="image-20200515110048107"></p>
 <hr>
-<h2 id="集成常用的第三方服务"><a href="#集成常用的第三方服务" class="headerlink" title="集成常用的第三方服务"></a>集成常用的第三方服务</h2><h3 id="搜索服务"><a href="#搜索服务" class="headerlink" title="搜索服务"></a>搜索服务</h3><p>相较官网提供几种<a href="http://theme-next.iissnan.com/third-party-services.html#analytics-system" target="_blank" rel="noopener">搜索服务</a>，我这里使用的是<code>Local Search</code>（这个配置最简单，站内查文章够用，当然想百度统计也比较常用，喜欢的可以自行添加），提供一个页面快速文章的功能。</p>
+<h2 id="集成常用的第三方服务"><a href="#集成常用的第三方服务" class="headerlink" title="集成常用的第三方服务"></a>集成常用的第三方服务</h2><h3 id="搜索服务"><a href="#搜索服务" class="headerlink" title="搜索服务"></a>搜索服务</h3><p>相较官网提供几种<a href="http://theme-next.iissnan.com/third-party-services.html#analytics-system" target="_blank" rel="noopener">搜索服务</a>，我这里使用的是<code>Local Search</code>，提供一个页面快速文章的功能。</p>
 <ol>
 <li><p>安装 <code>hexo-generator-searchdb</code>，在站点的根目录下执行以下命令：</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ npm install hexo-generator-searchdb --save</span><br></pre></td></tr></table></figure>
@@ -177,10 +230,10 @@
 
 </li>
 </ol>
-<h1 id="部署至GitHub-Pages"><a href="#部署至GitHub-Pages" class="headerlink" title="部署至GitHub Pages"></a>部署至GitHub Pages</h1><p>部署参考<a href="https://hexo.io/zh-cn/docs/github-pages" target="_blank" rel="noopener">官网部署教程</a>，这里我列出来是因为我想通过<code>&lt;GitHub 用户名&gt;.github.io</code>访问博客，但我发现<code>GitHub Pages</code>的部署分支只能为<code>master</code>，所以我修改了<code>.travis.yaml</code>文件，使我们在其他分支中（如：<code>hexo</code>）开发，而通过Travis CI工具部署至<code>master</code>分支，从而保证<code>&lt;你的 GitHub 用户名&gt;.github.io</code>能正常访问。</p>
+<h1 id="部署至GitHub-Pages"><a href="#部署至GitHub-Pages" class="headerlink" title="部署至GitHub Pages"></a>部署至GitHub Pages</h1><p>部署参考<a href="https://hexo.io/zh-cn/docs/github-pages" target="_blank" rel="noopener">官网部署教程</a>，这里我列出来是因为我想通过<code>&lt;GitHub 用户名&gt;.github.io</code>访问博客，但我发现<code>GitHub Pages</code>的部署分支只能为<code>master</code>，所以我修改了<code>.travis.yaml</code>文件，使我们在其他分支中（如：<code>hexo</code>）开发，而通过Travis CI工具部署至<code>master</code>分支，从而保证<code>&lt;GitHub 用户名&gt;.github.io</code>能正常访问。</p>
 <p>如果你不需要<code>&lt;GitHub 用户名&gt;.github.io</code>如此访问，可以接受<code>&lt;GitHub 用户名&gt;.github.io/xxx</code>访问就无需更改<code>.travis.yaml</code>文件，可以跳过本小节教程，直接参考官网部署教程。</p>
 <ol>
-<li><p>新建一个 repository。如果你希望你的站点能通过 <code>&lt;你的 GitHub 用户名&gt;.github.io</code> 域名访问，你的 repository 应该直接命名为 <code>&lt;你的 GitHub 用户名&gt;.github.io</code>。</p>
+<li><p>新建一个 repository。如果你希望你的站点能通过 <code>&lt;GitHub 用户名&gt;.github.io</code> 域名访问，你的 repository 应该直接命名为 <code>&lt;GitHub 用户名&gt;.github.io</code>。</p>
 </li>
 <li><p>将你的 Hexo 站点文件夹推送到 repository 中。默认情况下不应该 <code>public</code> 目录将不会被推送到 repository 中，你应该检查 <code>.gitignore</code> 文件中是否包含 <code>public</code> 一行，如果没有请加上。</p>
 </li>
