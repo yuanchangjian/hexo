@@ -178,7 +178,7 @@
 
 
 
-<h3 id="npm包发布"><a href="#npm包发布" class="headerlink" title="npm包发布"></a>npm包发布</h3><p>通常我们发布一个包到npm仓库时，我们的做法是先修改 <code>package.json</code> 为某个版本，然后执行 <code>npm publish</code> 命令。手动修改版本号的做法建立在你对Semver规范特别熟悉的基础之上，否则可能会造成版本混乱。npm 考虑到了这点，它提供了相关的命令来让我们更好的遵从Semver规范：</p>
+<h1 id="npm包发布"><a href="#npm包发布" class="headerlink" title="npm包发布"></a>npm包发布</h1><p>通常我们发布一个包到npm仓库时，我们的做法是先修改 <code>package.json</code> 为某个版本，然后执行 <code>npm publish</code> 命令。手动修改版本号的做法建立在你对Semver规范特别熟悉的基础之上，否则可能会造成版本混乱。npm 考虑到了这点，它提供了相关的命令来让我们更好的遵从Semver规范：</p>
 <ul>
 <li>升级补丁版本号：npm version patch</li>
 <li>升级小版本号：npm version minor</li>
