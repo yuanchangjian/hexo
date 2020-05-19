@@ -20,30 +20,40 @@
     var CONFIG = {"hostname":"yuanchangjian.github.io","root":"/","scheme":"Mist","version":"8.0.0-rc.2","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="我是要成为海贼王的男人">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Ycj&#39;s Blog">
-<meta property="og:url" content="https://yuanchangjian.github.io/index.html">
+  <meta name="description" content="下面我们通过一个二叉树层序遍历的题目来分析一下BFS和DFS方法的区别。 例题给你一个二叉树，请你返回其按 层序遍历 得到的节点值。 （即逐层地，从左到右访问所有节点）。 示例：二叉树：[3,9,20,null,null,15,7],   3  &#x2F; \ 9  20   &#x2F;  \  15   7返回其层次遍历结果： 12345[  [3],  [9,20],  [15,7]]">
+<meta property="og:type" content="article">
+<meta property="og:title" content="BFS和DFS">
+<meta property="og:url" content="https://yuanchangjian.github.io/2020/05/19/BFS%E5%92%8CDFS/index.html">
 <meta property="og:site_name" content="Ycj&#39;s Blog">
-<meta property="og:description" content="我是要成为海贼王的男人">
+<meta property="og:description" content="下面我们通过一个二叉树层序遍历的题目来分析一下BFS和DFS方法的区别。 例题给你一个二叉树，请你返回其按 层序遍历 得到的节点值。 （即逐层地，从左到右访问所有节点）。 示例：二叉树：[3,9,20,null,null,15,7],   3  &#x2F; \ 9  20   &#x2F;  \  15   7返回其层次遍历结果： 12345[  [3],  [9,20],  [15,7]]">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://yuanchangjian.github.io/cloudImage/images/20200519101431.png">
+<meta property="og:image" content="https://yuanchangjian.github.io/cloudImage/images/20200519110047.png">
+<meta property="og:image" content="https://yuanchangjian.github.io/cloudImage/images/20200519110134.png">
+<meta property="og:image" content="https://yuanchangjian.github.io/cloudImage/images/20200519110207.png">
+<meta property="og:image" content="https://pic.leetcode-cn.com/aeed09e12573ec00d83663bb4f77562e8904ac58cdb2cbe6e995f2ac33b12934-0203_1.gif">
+<meta property="article:published_time" content="2020-05-19T02:06:03.000Z">
+<meta property="article:modified_time" content="2020-05-19T03:29:54.828Z">
 <meta property="article:author" content="Ycj">
+<meta property="article:tag" content="BFS">
+<meta property="article:tag" content="DFS">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://yuanchangjian.github.io/cloudImage/images/20200519101431.png">
 
-<link rel="canonical" href="https://yuanchangjian.github.io/">
+<link rel="canonical" href="https://yuanchangjian.github.io/2020/05/19/BFS%E5%92%8CDFS/">
 
 
 <script id="page-configurations">
   // https://hexo.io/docs/variables.html
   CONFIG.page = {
     sidebar: "",
-    isHome : true,
-    isPost : false,
+    isHome : false,
+    isPost : true,
     lang   : 'zh-CN'
   };
 </script>
 
-  <title>Ycj's Blog</title>
+  <title>BFS和DFS | Ycj's Blog</title>
   
 
 
@@ -189,9 +199,10 @@
         <div class="content-wrap">
           
 
-          <div class="content index posts-expand">
+          <div class="content post posts-expand">
             
-      
+
+    
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
@@ -207,10 +218,9 @@
       <meta itemprop="name" content="Ycj's Blog">
     </span>
       <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/05/19/BFS%E5%92%8CDFS/" class="post-title-link" itemprop="url">BFS和DFS</a>
-        </h2>
+        <h1 class="post-title" itemprop="name headline">
+          BFS和DFS
+        </h1>
 
         <div class="post-meta">
             <span class="post-meta-item">
@@ -262,7 +272,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>下面我们通过一个二叉树层序遍历的题目来分析一下BFS和DFS方法的区别。</p>
+        <p>下面我们通过一个二叉树层序遍历的题目来分析一下BFS和DFS方法的区别。</p>
 <h1 id="例题"><a href="#例题" class="headerlink" title="例题"></a><a href="https://leetcode-cn.com/problems/binary-tree-level-order-traversal" target="_blank" rel="noopener">例题</a></h1><p>给你一个二叉树，请你返回其按 <strong>层序遍历</strong> 得到的节点值。 （即逐层地，从左到右访问所有节点）。</p>
 <p>示例：<br>二叉树：[3,9,20,null,null,15,7],</p>
 <pre><code>  3
@@ -271,317 +281,108 @@
   /  \
  15   7</code></pre><p>返回其层次遍历结果：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[</span><br><span class="line">  [3],</span><br><span class="line">  [9,20],</span><br><span class="line">  [15,7]</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/05/19/BFS%E5%92%8CDFS/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
+
+<a id="more"></a>
+
+<p>左边是BFS，按照层进行搜索；右边是DFS，先一路走到底，当无路可走则回溯上来，走其他路。</p>
+<p><img src="https://yuanchangjian.github.io/cloudImage/images/20200519101431.png" alt="image-20200519101430606"></p>
+<h1 id="BFS（breadth-First-Search）广度优先搜索"><a href="#BFS（breadth-First-Search）广度优先搜索" class="headerlink" title="BFS（breadth First Search）广度优先搜索"></a>BFS（breadth First Search）广度优先搜索</h1><p>BFS总共有两个通用模板。</p>
+<p>1.如果不需要确定当前遍历到了哪一层，BFS模板如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">while queue 不空：</span><br><span class="line">    cur &#x3D; queue.pop()</span><br><span class="line">    for 节点 in cur的所有相邻节点：</span><br><span class="line">        if 该节点有效且未访问过：</span><br><span class="line">            queue.push(该节点)</span><br></pre></td></tr></table></figure>
+
+<p>2.如果要确定当前遍历到了哪一层，BFS模板如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">level &#x3D; 0</span><br><span class="line">while queue 不空：</span><br><span class="line">    size &#x3D; queue.size()</span><br><span class="line">    while (size --) &#123;</span><br><span class="line">        cur &#x3D; queue.pop()</span><br><span class="line">        for 节点 in cur的所有相邻节点：</span><br><span class="line">            if 该节点有效且未被访问过：</span><br><span class="line">                queue.push(该节点)</span><br><span class="line">    &#125;</span><br><span class="line">    level ++;</span><br></pre></td></tr></table></figure>
+
+<p>本题要求二叉树的层次遍历，所以同一层的节点应该放在一起，故使用模板二。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;**</span><br><span class="line"> * Definition for a binary tree node.</span><br><span class="line"> * function TreeNode(val) &#123;</span><br><span class="line"> *     this.val &#x3D; val;</span><br><span class="line"> *     this.left &#x3D; this.right &#x3D; null;</span><br><span class="line"> * &#125;</span><br><span class="line"> *&#x2F;</span><br><span class="line">var levelOrder &#x3D; function(root) &#123;</span><br><span class="line">    var result &#x3D; [];</span><br><span class="line">    if (!root) return result;</span><br><span class="line">    var queue &#x3D; [];</span><br><span class="line">    queue.push(root);</span><br><span class="line">    while (queue.length !&#x3D;&#x3D; 0) &#123;</span><br><span class="line">        var length &#x3D; queue.length;</span><br><span class="line">        result.push([]);</span><br><span class="line">        for (var i &#x3D; 0; i &lt; length; i++) &#123;</span><br><span class="line">            var treeNode &#x3D; queue.shift();</span><br><span class="line">            result[result.length - 1].push(treeNode.val);</span><br><span class="line">            if (treeNode.left) queue.push(treeNode.left);</span><br><span class="line">            if (treeNode.right) queue.push(treeNode.right);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return result;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>实现过程如下所示，我们先将根节点放到队列中。</p>
+<p><img src="https://yuanchangjian.github.io/cloudImage/images/20200519110047.png" alt="image-20200519110046014"></p>
+<p>首先拿出根节点，如果左子树/右子树不为空，就将他们放入队列中。第一遍处理完后，根节点已经从队列中拿走了，而根节点的两个孩子已放入队列中了，现在队列中就有两个节点 <code>2</code> 和 <code>5</code>。</p>
+<p><img src="https://yuanchangjian.github.io/cloudImage/images/20200519110134.png" alt="image-20200519110133339"></p>
+<p>第二次处理，会将 <code>2</code> 和 <code>5</code> 这两个节点从队列中拿走，然后再将 2 和 5 的子节点放入队列中，现在队列中就有三个节点 <code>3</code>，<code>4</code>，<code>6</code>。</p>
+<p><img src="https://yuanchangjian.github.io/cloudImage/images/20200519110207.png" alt="image-20200519110206085"></p>
+<p>我们把每层遍历到的节点都放入到一个结果集中，最后返回这个结果集就可以了。</p>
+<p>时间复杂度： O(n)<em>O</em>(<em>n</em>)<br>空间复杂度：O(n)<em>O</em>(<em>n</em>)</p>
+<h1 id="DFS（Deep-First-Search）深度优先搜索"><a href="#DFS（Deep-First-Search）深度优先搜索" class="headerlink" title="DFS（Deep First Search）深度优先搜索"></a>DFS（Deep First Search）深度优先搜索</h1><p><img src="https://pic.leetcode-cn.com/aeed09e12573ec00d83663bb4f77562e8904ac58cdb2cbe6e995f2ac33b12934-0203_1.gif" alt="0203_1.gif"></p>
+<p> DFS 不是按照层次遍历的。为了让递归的过程中同一层的节点放到同一个列表中，在递归时要记录每个节点的深度 level。递归到新节点要把该节点放入 level 对应列表的末尾。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;**</span><br><span class="line"> * Definition for a binary tree node.</span><br><span class="line"> * function TreeNode(val) &#123;</span><br><span class="line"> *     this.val &#x3D; val;</span><br><span class="line"> *     this.left &#x3D; this.right &#x3D; null;</span><br><span class="line"> * &#125;</span><br><span class="line"> *&#x2F;</span><br><span class="line">var levelOrder &#x3D; function(root) &#123;</span><br><span class="line">    var result &#x3D; [];</span><br><span class="line">    if (!root) return result;</span><br><span class="line"></span><br><span class="line">    var dfs &#x3D; function(node, level) &#123;</span><br><span class="line">        if (result.length - 1 &lt; level) &#123;</span><br><span class="line">            result.push([]);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        result[level - 1].push(node.val);</span><br><span class="line">        if (node.left) dfs(node.left, level + 1);</span><br><span class="line">        if (node.right) dfs(node.right, level + 1);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    dfs(root, 0);</span><br><span class="line"></span><br><span class="line">    return result;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>时间复杂度：O(N)<em>O</em>(<em>N</em>)<br>空间复杂度：O(h)<em>O</em>(<em>h</em>)，<code>h</code> 是树的高度</p>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><h2 id="数据结构上的运用"><a href="#数据结构上的运用" class="headerlink" title="数据结构上的运用"></a>数据结构上的运用</h2><p>DFS用递归的形式，用到了栈结构，先进后出。</p>
+<p>BFS选取状态用队列的形式，先进先出。</p>
+<h2 id="复杂度"><a href="#复杂度" class="headerlink" title="复杂度"></a>复杂度</h2><p>DFS的复杂度与BFS的复杂度大体一致，不同之处在于遍历的方式与对于问题的解决出发点不同，DFS适合目标明确，而BFS适合大范围的寻找。</p>
+<h2 id="思想"><a href="#思想" class="headerlink" title="思想"></a>思想</h2><p>思想上来说这两种方法都是穷竭列举所有的情况。</p>
+<h2 id="使用场景"><a href="#使用场景" class="headerlink" title="使用场景"></a>使用场景</h2><p>DFS暂遇到的两个场景：层序遍历和最短路径</p>
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><ul>
+<li><p><a href="https://leetcode-cn.com/problems/binary-tree-level-order-traversal/" target="_blank" rel="noopener">二叉树层序遍历（leetcode）</a></p>
+</li>
+<li><p><a href="https://leetcode-cn.com/problems/binary-tree-level-order-traversal/solution/tao-mo-ban-bfs-he-dfs-du-ke-yi-jie-jue-by-fuxuemin/" target="_blank" rel="noopener">套模板！BFS 和 DFS 都可以解决</a></p>
+</li>
+<li><p><a href="https://leetcode-cn.com/problems/binary-tree-level-order-traversal/solution/bfs-de-shi-yong-chang-jing-zong-jie-ceng-xu-bian-l/" target="_blank" rel="noopener">BFS 的使用场景总结：层序遍历、最短路径问题</a></p>
+</li>
+<li><p><a href="https://zhuanlan.zhihu.com/p/24986203" target="_blank" rel="noopener">搜索思想——DFS &amp; BFS（基础基础篇）</a></p>
+</li>
+</ul>
+
     </div>
 
     
     
     
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://yuanchangjian.github.io/2020/05/12/Hexo%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2%E7%B3%BB%E5%88%97%EF%BC%9A%EF%BC%88%E4%B8%89%EF%BC%89Typora-PicGo%E5%AE%9E%E7%8E%B0%E5%9B%BE%E7%89%87%E4%B8%8A%E4%BC%A0%E5%8A%9F%E8%83%BD/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/lufei.jpg">
-      <meta itemprop="name" content="Ycj">
-      <meta itemprop="description" content="我是要成为海贼王的男人">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Ycj's Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/05/12/Hexo%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2%E7%B3%BB%E5%88%97%EF%BC%9A%EF%BC%88%E4%B8%89%EF%BC%89Typora-PicGo%E5%AE%9E%E7%8E%B0%E5%9B%BE%E7%89%87%E4%B8%8A%E4%BC%A0%E5%8A%9F%E8%83%BD/" class="post-title-link" itemprop="url">Hexo搭建博客系列：（三）Typora+PicGo实现图片上传功能</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-05-12 18:25:00" itemprop="dateCreated datePublished" datetime="2020-05-12T18:25:00+08:00">2020-05-12</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Hexo%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2%E7%B3%BB%E5%88%97/" itemprop="url" rel="index"><span itemprop="name">Hexo搭建博客系列</span></a>
-                </span>
-            </span>
-
-          
-            <span id="/2020/05/12/Hexo%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2%E7%B3%BB%E5%88%97%EF%BC%9A%EF%BC%88%E4%B8%89%EF%BC%89Typora-PicGo%E5%AE%9E%E7%8E%B0%E5%9B%BE%E7%89%87%E4%B8%8A%E4%BC%A0%E5%8A%9F%E8%83%BD/" class="post-meta-item leancloud_visitors" data-flag-title="Hexo搭建博客系列：（三）Typora+PicGo实现图片上传功能" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-    
-    <a title="disqus" href="/2020/05/12/Hexo%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2%E7%B3%BB%E5%88%97%EF%BC%9A%EF%BC%88%E4%B8%89%EF%BC%89Typora-PicGo%E5%AE%9E%E7%8E%B0%E5%9B%BE%E7%89%87%E4%B8%8A%E4%BC%A0%E5%8A%9F%E8%83%BD/#disqus_thread" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2020/05/12/Hexo搭建博客系列：（三）Typora-PicGo实现图片上传功能/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>编写markdown时经常会有插入图片的需求，而粘贴的图片的地址为本地地址，部署时是无法查看的。办法总比问题多，下面教大家使用Typora+PicGo+GitHub图床给markdown愉快的添加图片。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/05/12/Hexo%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2%E7%B3%BB%E5%88%97%EF%BC%9A%EF%BC%88%E4%B8%89%EF%BC%89Typora-PicGo%E5%AE%9E%E7%8E%B0%E5%9B%BE%E7%89%87%E4%B8%8A%E4%BC%A0%E5%8A%9F%E8%83%BD/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
         
-      
-    </div>
 
-    
-    
-    
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>Ycj
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://yuanchangjian.github.io/2020/05/19/BFS%E5%92%8CDFS/" title="BFS和DFS">https://yuanchangjian.github.io/2020/05/19/BFS和DFS/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
       <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
+          <div class="post-tags">
+              <a href="/tags/BFS/" rel="tag"># BFS</a>
+              <a href="/tags/DFS/" rel="tag"># DFS</a>
+          </div>
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://yuanchangjian.github.io/2020/05/12/Hexo%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2%E7%B3%BB%E5%88%97%EF%BC%9A%EF%BC%88%E4%BA%8C%EF%BC%89%E8%87%AA%E5%AE%9A%E4%B9%89%E6%A0%B7%E5%BC%8F%E4%BC%98%E5%8C%96%E4%B8%BB%E9%A2%98/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/lufei.jpg">
-      <meta itemprop="name" content="Ycj">
-      <meta itemprop="description" content="我是要成为海贼王的男人">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Ycj's Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/05/12/Hexo%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2%E7%B3%BB%E5%88%97%EF%BC%9A%EF%BC%88%E4%BA%8C%EF%BC%89%E8%87%AA%E5%AE%9A%E4%B9%89%E6%A0%B7%E5%BC%8F%E4%BC%98%E5%8C%96%E4%B8%BB%E9%A2%98/" class="post-title-link" itemprop="url">Hexo搭建博客系列：（二）自定义样式优化主题</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-05-12 13:42:08" itemprop="dateCreated datePublished" datetime="2020-05-12T13:42:08+08:00">2020-05-12</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Hexo%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2%E7%B3%BB%E5%88%97/" itemprop="url" rel="index"><span itemprop="name">Hexo搭建博客系列</span></a>
-                </span>
-            </span>
-
-          
-            <span id="/2020/05/12/Hexo%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2%E7%B3%BB%E5%88%97%EF%BC%9A%EF%BC%88%E4%BA%8C%EF%BC%89%E8%87%AA%E5%AE%9A%E4%B9%89%E6%A0%B7%E5%BC%8F%E4%BC%98%E5%8C%96%E4%B8%BB%E9%A2%98/" class="post-meta-item leancloud_visitors" data-flag-title="Hexo搭建博客系列：（二）自定义样式优化主题" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-    
-    <a title="disqus" href="/2020/05/12/Hexo%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2%E7%B3%BB%E5%88%97%EF%BC%9A%EF%BC%88%E4%BA%8C%EF%BC%89%E8%87%AA%E5%AE%9A%E4%B9%89%E6%A0%B7%E5%BC%8F%E4%BC%98%E5%8C%96%E4%B8%BB%E9%A2%98/#disqus_thread" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2020/05/12/Hexo搭建博客系列：（二）自定义样式优化主题/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>本教程是我对Next主题的一些自定义样式修改，主要通过两种方式：修改<code>主题配置文件</code>和自定义样式。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/05/12/Hexo%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2%E7%B3%BB%E5%88%97%EF%BC%9A%EF%BC%88%E4%BA%8C%EF%BC%89%E8%87%AA%E5%AE%9A%E4%B9%89%E6%A0%B7%E5%BC%8F%E4%BC%98%E5%8C%96%E4%B8%BB%E9%A2%98/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
         
-      
-    </div>
 
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://yuanchangjian.github.io/2020/05/11/Hexo%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2%E7%B3%BB%E5%88%97%EF%BC%9A%EF%BC%88%E4%B8%80%EF%BC%89%E6%90%AD%E5%BB%BA%E5%B1%9E%E4%BA%8E%E8%87%AA%E5%B7%B1%E7%9A%84%E5%8D%9A%E5%AE%A2%E7%BD%91%E7%AB%99/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/lufei.jpg">
-      <meta itemprop="name" content="Ycj">
-      <meta itemprop="description" content="我是要成为海贼王的男人">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Ycj's Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/05/11/Hexo%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2%E7%B3%BB%E5%88%97%EF%BC%9A%EF%BC%88%E4%B8%80%EF%BC%89%E6%90%AD%E5%BB%BA%E5%B1%9E%E4%BA%8E%E8%87%AA%E5%B7%B1%E7%9A%84%E5%8D%9A%E5%AE%A2%E7%BD%91%E7%AB%99/" class="post-title-link" itemprop="url">Hexo搭建博客系列：（一）搭建属于自己的博客网站</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-05-11 20:18:48" itemprop="dateCreated datePublished" datetime="2020-05-11T20:18:48+08:00">2020-05-11</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Hexo%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2%E7%B3%BB%E5%88%97/" itemprop="url" rel="index"><span itemprop="name">Hexo搭建博客系列</span></a>
-                </span>
-            </span>
-
-          
-            <span id="/2020/05/11/Hexo%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2%E7%B3%BB%E5%88%97%EF%BC%9A%EF%BC%88%E4%B8%80%EF%BC%89%E6%90%AD%E5%BB%BA%E5%B1%9E%E4%BA%8E%E8%87%AA%E5%B7%B1%E7%9A%84%E5%8D%9A%E5%AE%A2%E7%BD%91%E7%AB%99/" class="post-meta-item leancloud_visitors" data-flag-title="Hexo搭建博客系列：（一）搭建属于自己的博客网站" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-    
-    <a title="disqus" href="/2020/05/11/Hexo%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2%E7%B3%BB%E5%88%97%EF%BC%9A%EF%BC%88%E4%B8%80%EF%BC%89%E6%90%AD%E5%BB%BA%E5%B1%9E%E4%BA%8E%E8%87%AA%E5%B7%B1%E7%9A%84%E5%8D%9A%E5%AE%A2%E7%BD%91%E7%AB%99/#disqus_thread" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2020/05/11/Hexo搭建博客系列：（一）搭建属于自己的博客网站/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>本教程是对Hexo+NexT博客部署到GitHub Pages的总结，你可以参照这个教程搭建出基本能用的博客网站，若你有自己的想法，可以自己参考相关文档进行个性化配置。针对后续我自己博客的个性化配置，我会在这一系列教程的其他教程中一一列举出来。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/05/11/Hexo%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2%E7%B3%BB%E5%88%97%EF%BC%9A%EF%BC%88%E4%B8%80%EF%BC%89%E6%90%AD%E5%BB%BA%E5%B1%9E%E4%BA%8E%E8%87%AA%E5%B7%B1%E7%9A%84%E5%8D%9A%E5%AE%A2%E7%BD%91%E7%AB%99/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
         
-      
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/05/12/Hexo%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2%E7%B3%BB%E5%88%97%EF%BC%9A%EF%BC%88%E4%B8%89%EF%BC%89Typora-PicGo%E5%AE%9E%E7%8E%B0%E5%9B%BE%E7%89%87%E4%B8%8A%E4%BC%A0%E5%8A%9F%E8%83%BD/" rel="prev" title="Hexo搭建博客系列：（三）Typora+PicGo实现图片上传功能">
+      <i class="fa fa-chevron-left"></i> Hexo搭建博客系列：（三）Typora+PicGo实现图片上传功能
+    </a></div>
+      <div class="post-nav-item"></div>
     </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
       </footer>
+    
   </article>
   
   
-  
-
-
   
 
 
 
           </div>
           
+    
+  <div class="comments">
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+    </div>
+  </div>
+  
 
 <script>
   window.addEventListener('tabs:register', () => {
@@ -628,6 +429,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#例题"><span class="nav-number">1.</span> <span class="nav-text">例题</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#BFS（breadth-First-Search）广度优先搜索"><span class="nav-number">2.</span> <span class="nav-text">BFS（breadth First Search）广度优先搜索</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#DFS（Deep-First-Search）深度优先搜索"><span class="nav-number">3.</span> <span class="nav-text">DFS（Deep First Search）深度优先搜索</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#总结"><span class="nav-number">4.</span> <span class="nav-text">总结</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#数据结构上的运用"><span class="nav-number">4.1.</span> <span class="nav-text">数据结构上的运用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#复杂度"><span class="nav-number">4.2.</span> <span class="nav-text">复杂度</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#思想"><span class="nav-number">4.3.</span> <span class="nav-text">思想</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用场景"><span class="nav-number">4.4.</span> <span class="nav-text">使用场景</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考"><span class="nav-number">5.</span> <span class="nav-text">参考</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -888,6 +690,26 @@
   }
   // defer loading until the whole page loading is completed
   window.addEventListener('load', loadCount, false);
+</script>
+<script>
+  var disqus_config = function() {
+    this.page.url = "https://yuanchangjian.github.io/2020/05/19/BFS%E5%92%8CDFS/";
+    this.page.identifier = "2020/05/19/BFS和DFS/";
+    this.page.title = "BFS和DFS";
+    };
+  NexT.utils.loadComments(document.querySelector('#disqus_thread'), () => {
+    if (window.DISQUS) {
+      DISQUS.reset({
+        reload: true,
+        config: disqus_config
+      });
+    } else {
+      var d = document, s = d.createElement('script');
+      s.src = 'https://yuanchangjian.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', '' + +new Date());
+      (d.head || d.body).appendChild(s);
+    }
+  });
 </script>
 
 </body>
