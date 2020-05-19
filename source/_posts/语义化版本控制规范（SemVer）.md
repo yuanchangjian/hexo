@@ -115,7 +115,7 @@ npm install --save antd@3.6.1
 
 
 
-### npm包发布
+# npm包发布
 
 通常我们发布一个包到npm仓库时，我们的做法是先修改 `package.json` 为某个版本，然后执行 `npm publish` 命令。手动修改版本号的做法建立在你对Semver规范特别熟悉的基础之上，否则可能会造成版本混乱。npm 考虑到了这点，它提供了相关的命令来让我们更好的遵从Semver规范：
 
