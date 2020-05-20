@@ -4,35 +4,50 @@ date: 2020-05-19 21:34:01
 categories: JavaScript
 tags:
 	- JavaScript模块化
+
 ---
 
-# JS-模块化历程
+# JavaScript模块化历程
 
 到目前为止，大概分为以下几个里程碑式节点。
 
-```
-原始时代 ---> CommonJS ---> AMD ---> CMD ---> UMD ---> ES6Module
-```
+* 函数块
+
+* 命名空间
+
+* 闭包
+
+* CommonJS
+
+* AMD
+
+* CMD
+
+* UMD
+
+* ES6Module
+
+  
 
 <!-- more -->
 
-# 原始时代
-## 初始版本
+# 函数块
 
 最早，我们这么写代码
 
 ```
-function foo(){
-}
-function bar(){
-}
+function foo() {}
+function bar() {}
 ```
 
-{% note info %}
+{% note warning %}
 Global 被污染，很容易命名冲突
 {% endnote %}
 
-## 简单封装：Namespace模式
+
+
+# 命名空间
+
 ```
 var MYAPP = {
     foo: function(){},
@@ -42,12 +57,20 @@ var MYAPP = {
 MYAPP.foo();
 ```
 
-{% note info %}
+{% note warning %}
+
 * 减少 Global 上的变量数目
+
 * 本质是对象，一点都不安全
+
 {% endnote %}
 
-## 匿名闭包 ：IIFE 模式
+
+
+# 闭包（IIFE 模式）
+
+## 匿名闭包 
+
 ```
 var Module = (function(){
     var _private = "safe now";
@@ -64,11 +87,14 @@ Module.foo();
 Module._private; // undefined
 ```
 
-{% note info %}
+{% note warning %}
 函数是 JavaScript 唯一的 Local Scope
 {% endnote %}
 
-## 再增强一点 ：引入依赖
+
+
+## 引入依赖
+
 ```
 var Module = (function($){
     var _$body = $("body");     // we can use jQuery now!
@@ -85,63 +111,110 @@ var Module = (function($){
 Module.foo();
 ```
 
-{% note info %}
-这就是模块模式
+{% note warning %}
+这就是模块模式，也是现代模块实现的基石
 {% endnote %}
 
-## 工业革命
-不一一列举了，大致为为以下几个过程
-```
-LABjs -> Sugar -> YUI -> YUI Combo -> 合并 Concat | 压缩 Minify | 混淆 Uglify
-```
 
-# CommonJS && Node.js
-CommonJS规范，主要运行于服务器端，同步加载模块，而加载的文件资源大多数在本地服务器，所以执行速度或时间没问题。Node.js很好的实现了该规范。
-模块功能主要的几个命令：require和module.exports。
+
+# [CommonJS](http://www.commonjs.org/)&& [Node.js](https://nodejs.org/en/)(2009) 
+
+`CommonJS`规范，主要运行于`服务器端`，一个单独的文件就是一个模块，`同步加载`模块。`Node.js`很好的实现了该规范。
+
 ```
-// math.js
+// module1.js
 exports.add = function(a, b){
     return a + b;
 }
 // main.js
-var math = require('math')      // ./math in node
-console.log(math.add(1, 2));    // 3
+var module1 = require('./module1')	// 同步加载并执行
+console.log(module1.add(1, 2));    	// 3
 ```
 
-![image-20200519222013392](https://yuanchangjian.github.io/cloudImage/images/20200519222015.png)
+{% note warning %}
 
-# AMD && Require.js
-AMD(Asynchronous Module Definition - 异步加载模块定义)规范，制定了定义模块的规则,一个单独的文件就是一个模块，模块和模块的依赖可以被异步加载。主要运行于浏览器端，这和浏览器的异步加载模块的环境刚好适应，它不会影响后面语句的运行。该规范是在RequireJs的推广过程中逐渐完善的。
+同步/阻塞式加载
 
-模块功能主要的几个命令：define、require、return和define.amd。define是全局函数，用来定义模块,define(id?, dependencies?, factory)。require命令用于输入其他模块提供的功能，return命令用于规范模块的对外接口，define.amd属性是一个对象，此属性的存在来表明函数遵循AMD规范。
+{% endnote %}
+
+
+![image-20200520112846849](https://yuanchangjian.github.io/cloudImage/images/20200519222015.png)
+
+
+
+# [AMD](https://github.com/amdjs/amdjs-api/wiki/AMD) && [Require.js](https://requirejs.org/)(2011)
+
+AMD(Asynchronous Module Definition - 异步加载模块定义)规范，一个单独的文件就是一个模块，模块和模块的依赖可以被`异步加载`。主要运行于`浏览器端`。该规范是在RequireJs的推广过程中逐渐完善的。
 
 ```
 // moduleA.js
-define(['jQuery','lodash'], function($, _) {
-    var name = 'weiqinl',
-    function foo() {}
+define(
+	['jQuery','lodash'], 	// 依赖
+	function($, _) {	// 这个回调会在所有依赖都被加载后才执行
+        var name = 'weiqinl',
+        function foo() {}
         return {
-        name,
-        foo
+            name,
+            foo
+        }
     }
-})
+)
 
 // index.js
 require(['moduleA'], function(a) {
     a.name === 'weiqinl' // true
     a.foo() // 执行A模块中的foo函数
-    // do sth...
+    // ...
 })
 
 // index.html
 <script src="js/require.js" data-main="js/index"></script>
 ```
-在这里，我们使用define来定义模块，return来输出接口， require来加载模块，这是AMD官方推荐用法。
+
+## AMD vs CommonJS
+
+* 书写风格
+
+```
+// Module/1.0
+var a = require("./a");  // 依赖就近
+a.doSomething();
+
+var b = require("./b")
+b.doSomething();
+```
+
+```
+// AMD recommended style
+define(["a", "b"], function(a, b){ // 依赖前置
+    a.doSomething();
+    b.doSomething();
+})
+```
+
+* 执行时机
+
+```
+// Module/1.0
+var a = require("./a");  // 执行到此时，a.js 同步下载并执行
+```
+
+```
+// AMD with CommonJS sugar
+define(["require"], function(require){
+    // 在这里， a.js 已经下载并且执行好了
+    var a = require("./a")
+})
+```
 
 AMD的运行逻辑是：提前加载，提前执行。在Requirejs中，申明依赖模块时，会第一时间加载并执行模块内的代码，使后面的回调函数能在所需的环境中运行。
 
-# CMD && Sea.js
+
+
+# [CMD](https://github.com/cmdjs/specification/blob/master/draft/module.md) && Sea.js(2011)
+
 CMD(Common Module Definition - 通用模块定义)规范主要是Sea.js推广中形成的，一个文件就是一个模块，可以像Node.js一般书写模块代码。主要在浏览器中运行，当然也可以在Node.js中运行。
+
 ```
 // moduleA.js
 // 定义模块
@@ -149,12 +222,15 @@ define(function(require, exports, module) {
     var func = function() {
         var a = require('./a') // 到此才会加载a模块
         a.func()
+        
         if(false) {
-        	var b = require('./b') // 到此才会加载b模块
+        	var b = require('./b') // 到此才会加载b模块，此处条件不法进入，不会加载
         	b.func() 	
     	}
 	}
-	// do sth...
+	
+	// ...
+	
 	exports.func = func;
 })
 
@@ -168,49 +244,79 @@ seajs.use('moduleA.js', function(ma) {
 <script src="./js/sea.js"></script>
 <script src="./js/index.js"></script>
 ```
-这里define是一个全局函数，用来定义模块，并通过exports向外提供接口。之后，如果要使用某模块，可以通过require来获取该模块提供的接口。最后使用某个组件的时候，通过seajs.use()来调用。
+
+
+
+## AMD VS CMD
+
+* 执行时机
+
+```
+// AMD recommended
+define(['a', 'b'], function(a, b){
+    a.doSomething();    // 依赖前置，提前执行
+    b.doSomething();
+})
+```
+
+```
+// CMD recommanded
+define(function(require, exports, module){
+    var a = require("a");
+    a.doSomething();
+    var b = require("b");
+    b.doSomething();    // 依赖就近，延迟执行
+})
+```
+
 CMD推崇依赖就近，延迟执行。在上面例子中，通过require引入的模块，只有当程序运行到此处的时候，模块才会自动加载执行。
 
+
 # UMD && webpack
+
 UMD(Universal Module Definition - 通用模块定义)模式，该模式主要用来解决CommonJS模式和AMD模式代码不能通用的问题，并同时还支持老式的全局变量规范。
+
 ```
 // 使用Node, AMD 或 browser globals 模式创建模块
 (function (root, factory) {
     if (typeof define === 'function' && define.amd) {
     	// AMD模式. 注册为一个匿名函数
-    	define(['b'], factory);
+		define(['b'], factory);
     } else if (typeof module === 'object' && module.exports) {
     	// Node等类CommonJS的环境
-    	module.exports = factory(require('b'));
+		module.exports = factory(require('b'));
     } else {
     	// 浏览器全局变量 (root is window)
-    	root.returnExports = factory(root.b);
+		root.returnExports = factory(root.b);
     }
 }(typeof self !== 'undefined' ? self : this, function (b) {
-    // 以某种方式使用 b
-
+	// 以某种方式使用 b
     //返回一个值来定义模块导出。(即可以返回对象，也可以返回函数)
     return {};
 }));
 ```
-1. 判断define为函数，并且是否存在define.amd，来判断是否为AMD规范,
-2. 判断module是否为一个对象，并且是否存在module.exports来判断是否为CommonJS规范
-3. 如果以上两种都没有，设定为原始的代码规范。
 
-这种模式，通常会在webpack打包的时候用到。output.libraryTarget将模块以哪种规范的文件输出。
+1. 判断`define`为函数，并且是否存在`define.amd`，来判断是否为`AMD规范`
+2. 判断`module`是否为一个对象，并且是否存在`module.exports`来判断是否为`CommonJS规范`
+3. 如果以上两种都没有，设定为原始的代码规范
+
+这种模式，通常会在`webpack`打包的时候用到。`output.libraryTarget`将模块以哪种规范的文件输出。
+
+
 
 # ES6 Module && ES6
 
 在ECMAScript 2015版本出来之后，确定了一种新的模块加载方式，我们称之为ES6 Module。它和前几种方式有区别和相同点。
 
 1. 它因为是标准，所以未来很多浏览器会支持，可以很方便的在浏览器中使用。
-2. 它同时兼容在node环境下运行。
-3. 模块的导入导出，通过import和export来确定。
-4. 可以和Commonjs模块混合使用。
-5. CommonJS输出的是一个值的拷贝。ES6模块输出的是值的引用,加载的时候会做静态优化。
-6. CommonJS模块是运行时加载确定输出接口，ES6模块是编译时确定输出接口。
+2. 它同时兼容在`node`环境下运行。
+3. 模块的导入导出，通过`import`和`export`来确定。
+4. 可以和`Commonjs`模块混合使用。
+5. `CommonJS`输出的是一个**值的拷贝**。ES6模块输出的是**值的引用**,加载的时候会做静态优化。
+6. `CommonJS`模块是运行时加载确定输出接口，ES6模块是编译时确定输出接口。
 
-ES6模块功能主要由两个命令构成：import和export。import命令用于输入其他模块提供的功能。export命令用于规范模块的对外接口。
+ES6模块功能主要由两个命令构成：`import`和`export`。`import`命令用于输入其他模块提供的功能。`export`命令用于规范模块的对外接口。
+
 ```
 // 输出变量
 export var name = 'weiqinl'
@@ -232,24 +338,30 @@ export default function() {
 	console.log('foo')
 }
 ```
+
 import导入其他模块
+
 ```
 // 正常命令
 import { name, year } from './module.js' //后缀.js不能省略
 
 // 如果遇到export default命令导出的模块
 import ed from './export-default.js'
-
 ```
 
+
+
 ## 浏览器加载
-浏览器加载ES6模块，使用`<script>`标签，但是要加入type="module"属性
+
+浏览器加载ES6模块，使用`<script>`标签，但是要加入`type="module"`属性
 外链js文件
 
 ```
 <script type="module" src="index.js"></script>
 ```
+
 也可以内嵌在网页中
+
 ```
 <script type="module">
 import utils from './utils.js';
@@ -277,6 +389,12 @@ $ node --experimental-modules my-app.mjs
 ```
 
 `Node`的`import`命令只支持异步加载本地模块(`file:`协议)，不支持加载远程模块。
+
+
+
+# 总结
+
+这篇文章主要描述了JavaScript的模块化历程，以史为鉴，可以知兴替。每种技术的出现都是为了解决一些痛点的，不要排斥新技术，也不要迷茫学习新技术，除非它能解决你的痛点。
 
 
 

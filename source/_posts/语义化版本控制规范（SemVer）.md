@@ -19,7 +19,7 @@ tags:
 # 版本格式
 
 1. 主版本号：当你做了不兼容的 API 修改。（如：V2.6.11 -> V3.0.0-alpha.0）
-2. 次版本号：当你做了向下兼容的功能性新增。（如：V2.5.22 -> V2.6.0-beta.1）
+2. 次版本号：当你做了向下兼容的功能性新增。（如：V2.5.22 -> V2.6.0）
 3. 修订号：当你做了向下兼容的问题修正。（如：V2.6.10 -> V2.6.11）
 
 
@@ -75,7 +75,7 @@ tags:
 
 常用的就是上述两种情况，拿vue做个例子：
 
-* 项目兼容vue发布的此版本和补丁包版本："vue": "^2.5.0"
+* 项目兼容vue发布的次版本和补丁版本："vue": "^2.5.0"
 * 项目只兼容vue发布的补丁版本："vue": "~2.5.0"（发布2.6.0不会更新）
 
 
@@ -89,7 +89,7 @@ tags:
 在 npm 5.4.2版本后，package-lock.json 的变动规则：
 
 - 当在 install dependency 的指定版本时，会自动更新 package-lock.json 文件中该 dependency 的 version 到指定的 version
-- 当在 install dependency 的范围版本时，当前的 version 低于or等于 package-lock.json 文件中对应的 dependency 的 version 时，会安装 package-lock.json 中的 version；
+- 当在 install dependency 的范围版本时，当前的 version 低于或等于 package-lock.json 文件中对应的 dependency 的 version 时，会安装 package-lock.json 中的 version；
 
 ```
 package.json
