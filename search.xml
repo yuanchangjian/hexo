@@ -173,8 +173,10 @@
 
 
 <h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><ul>
-<li><h4 id="搜索插入位置"><a href="#搜索插入位置" class="headerlink" title="搜索插入位置"></a><a href="https://leetcode-cn.com/problems/search-insert-position/" target="_blank" rel="noopener">搜索插入位置</a></h4></li>
-<li><h4 id="用「排除法」（减治思想）写二分查找问题、与其它二分查找模板的比较"><a href="#用「排除法」（减治思想）写二分查找问题、与其它二分查找模板的比较" class="headerlink" title="用「排除法」（减治思想）写二分查找问题、与其它二分查找模板的比较"></a><a href="https://leetcode-cn.com/problems/search-insert-position/solution/te-bie-hao-yong-de-er-fen-cha-fa-fa-mo-ban-python-/" target="_blank" rel="noopener">用「排除法」（减治思想）写二分查找问题、与其它二分查找模板的比较</a></h4></li>
+<li><p><a href="https://leetcode-cn.com/problems/search-insert-position/" target="_blank" rel="noopener">搜索插入位置</a></p>
+</li>
+<li><p><a href="https://leetcode-cn.com/problems/search-insert-position/solution/te-bie-hao-yong-de-er-fen-cha-fa-fa-mo-ban-python-/" target="_blank" rel="noopener">用「排除法」（减治思想）写二分查找问题、与其它二分查找模板的比较</a></p>
+</li>
 </ul>
 ]]></content>
       <categories>
