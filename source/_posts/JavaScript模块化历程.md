@@ -36,7 +36,7 @@ tags:
 
 最早，我们这么写代码
 
-```
+```javascript
 function foo() {}
 function bar() {}
 ```
@@ -49,7 +49,7 @@ Global 被污染，很容易命名冲突
 
 # 命名空间
 
-```
+```javascript
 var MYAPP = {
     foo: function(){},
     bar: function(){}
@@ -72,7 +72,7 @@ MYAPP.foo();
 
 ## 匿名闭包 
 
-```
+```javascript
 var Module = (function(){
     var _private = "safe now";
     var foo = function(){
@@ -96,7 +96,7 @@ Module._private; // undefined
 
 ## 引入依赖
 
-```
+```javascript
 var Module = (function($){
     var _$body = $("body");     // we can use jQuery now!
     var foo = function(){
@@ -118,11 +118,11 @@ Module.foo();
 
 
 
-# [CommonJS](http://www.commonjs.org/)&& [Node.js](https://nodejs.org/en/)(2009) 
+# [CommonJS](http://www.commonjs.org/) && [Node.js](https://nodejs.org/en/)(2009) 
 
 `CommonJS`规范，主要运行于`服务器端`，一个单独的文件就是一个模块，`同步加载`模块。`Node.js`很好的实现了该规范。
 
-```
+```javascript
 // module1.js
 exports.add = function(a, b){
     return a + b;
@@ -145,14 +145,14 @@ console.log(module1.add(1, 2));    	// 3
 
 # [AMD](https://github.com/amdjs/amdjs-api/wiki/AMD) && [Require.js](https://requirejs.org/)(2011)
 
-AMD(Asynchronous Module Definition - 异步加载模块定义)规范，一个单独的文件就是一个模块，模块和模块的依赖可以被`异步加载`。主要运行于`浏览器端`。该规范是在RequireJs的推广过程中逐渐完善的。
+AMD(Asynchronous Module Definition - 异步加载模块定义)规范，一个单独的文件就是一个模块，模块和模块的依赖可以被`异步加载`。主要运行于`浏览器端`。该规范是在Require.js的推广过程中逐渐完善的。
 
-```
+```javascript
 // moduleA.js
 define(
-	['jQuery','lodash'], 	// 依赖
-	function($, _) {	// 这个回调会在所有依赖都被加载后才执行
-        var name = 'weiqinl',
+    ['jQuery','lodash'], 	// 依赖
+    function($, _) {	    // 这个回调会在所有依赖都被加载后才执行
+        var name = 'weiqinl';
         function foo() {}
         return {
             name,
@@ -172,11 +172,13 @@ require(['moduleA'], function(a) {
 <script src="js/require.js" data-main="js/index"></script>
 ```
 
+
+
 ## AMD vs CommonJS
 
 * 书写风格
 
-```
+```javascript
 // Module/1.0
 var a = require("./a");  // 依赖就近
 a.doSomething();
@@ -185,7 +187,7 @@ var b = require("./b")
 b.doSomething();
 ```
 
-```
+```javascript
 // AMD recommended style
 define(["a", "b"], function(a, b){ // 依赖前置
     a.doSomething();
@@ -195,12 +197,12 @@ define(["a", "b"], function(a, b){ // 依赖前置
 
 * 执行时机
 
-```
+```javascript
 // Module/1.0
 var a = require("./a");  // 执行到此时，a.js 同步下载并执行
 ```
 
-```
+```javascript
 // AMD with CommonJS sugar
 define(["require"], function(require){
     // 在这里， a.js 已经下载并且执行好了
@@ -208,7 +210,7 @@ define(["require"], function(require){
 })
 ```
 
-AMD的运行逻辑是：提前加载，提前执行。在Requirejs中，申明依赖模块时，会第一时间加载并执行模块内的代码，使后面的回调函数能在所需的环境中运行。
+AMD的运行逻辑是：**提前加载**，**提前执行**。在Require.js中，申明依赖模块时，会第一时间加载并执行模块内的代码，使后面的回调函数能在所需的环境中运行。
 
 
 
@@ -216,7 +218,7 @@ AMD的运行逻辑是：提前加载，提前执行。在Requirejs中，申明�
 
 CMD(Common Module Definition - 通用模块定义)规范主要是Sea.js推广中形成的，一个文件就是一个模块，可以像Node.js一般书写模块代码。主要在浏览器中运行，当然也可以在Node.js中运行。
 
-```
+```javascript
 // moduleA.js
 // 定义模块
 define(function(require, exports, module) {
@@ -225,20 +227,20 @@ define(function(require, exports, module) {
         a.func()
         
         if(false) {
-        	var b = require('./b') // 到此才会加载b模块，此处条件不法进入，不会加载
-        	b.func() 	
-    	}
-	}
+            var b = require('./b') // 到此才会加载b模块，此处条件不法进入，不会加载
+            b.func() 	
+        }
+    }
 	
-	// ...
-	
-	exports.func = func;
+    // ...
+    
+    exports.func = func;
 })
 
 // index.js
 // 加载使用模块
 seajs.use('moduleA.js', function(ma) {
-	var ma = math.func()
+    var ma = math.func()
 })
 
 // HTML，需要在页面中引入sea.js文件。
@@ -252,7 +254,7 @@ seajs.use('moduleA.js', function(ma) {
 
 * 执行时机
 
-```
+```javascript
 // AMD recommended
 define(['a', 'b'], function(a, b){
     a.doSomething();    // 依赖前置，提前执行
@@ -260,7 +262,7 @@ define(['a', 'b'], function(a, b){
 })
 ```
 
-```
+```javascript
 // CMD recommanded
 define(function(require, exports, module){
     var a = require("a");
@@ -270,28 +272,28 @@ define(function(require, exports, module){
 })
 ```
 
-CMD推崇依赖就近，延迟执行。在上面例子中，通过require引入的模块，只有当程序运行到此处的时候，模块才会自动加载执行。
+CMD推崇**依赖就近**，**延迟执行**。在上面例子中，通过require引入的模块，只有当程序运行到此处的时候，模块才会自动加载执行。
 
 
 # UMD && webpack
 
 UMD(Universal Module Definition - 通用模块定义)模式，该模式主要用来解决CommonJS模式和AMD模式代码不能通用的问题，并同时还支持老式的全局变量规范。
 
-```
+```javascript
 // 使用Node, AMD 或 browser globals 模式创建模块
 (function (root, factory) {
     if (typeof define === 'function' && define.amd) {
-    	// AMD模式. 注册为一个匿名函数
-		define(['b'], factory);
+        // AMD模式. 注册为一个匿名函数
+        define(['b'], factory);
     } else if (typeof module === 'object' && module.exports) {
-    	// Node等类CommonJS的环境
-		module.exports = factory(require('b'));
+        // Node等类CommonJS的环境
+        module.exports = factory(require('b'));
     } else {
-    	// 浏览器全局变量 (root is window)
-		root.returnExports = factory(root.b);
+        // 浏览器全局变量 (root is window)
+        root.returnExports = factory(root.b);
     }
 }(typeof self !== 'undefined' ? self : this, function (b) {
-	// 以某种方式使用 b
+    // 以某种方式使用 b
     //返回一个值来定义模块导出。(即可以返回对象，也可以返回函数)
     return {};
 }));
@@ -318,7 +320,7 @@ UMD(Universal Module Definition - 通用模块定义)模式，该模式主要用
 
 ES6模块功能主要由两个命令构成：`import`和`export`。`import`命令用于输入其他模块提供的功能。`export`命令用于规范模块的对外接口。
 
-```
+```javascript
 // 输出变量
 export var name = 'weiqinl'
 export var year = '2018'
@@ -342,7 +344,7 @@ export default function() {
 
 import导入其他模块
 
-```
+```javascript
 // 正常命令
 import { name, year } from './module.js' //后缀.js不能省略
 
@@ -357,13 +359,13 @@ import ed from './export-default.js'
 浏览器加载ES6模块，使用`<script>`标签，但是要加入`type="module"`属性
 外链js文件
 
-```
+```html
 <script type="module" src="index.js"></script>
 ```
 
 也可以内嵌在网页中
 
-```
+```html
 <script type="module">
 import utils from './utils.js';
 // other code
@@ -385,7 +387,7 @@ import utils from './utils.js';
 Node要求 ES6 模块采用`.mjs`后缀文件名。也就是说，只要脚本文件里面使用`import`或者`export`命令，就必须采用`.mjs`后缀名。
 这个功能还在试验阶段。安装`Node V8.5.0`或以上版本，要用`--experimental-modules`参数才能打开该功能。
 
-```
+```bash
 $ node --experimental-modules my-app.mjs
 ```
 
