@@ -70,7 +70,7 @@
     <title>代理模式</title>
     <url>/2020/05/28/%E4%BB%A3%E7%90%86%E6%A8%A1%E5%BC%8F/</url>
     <content><![CDATA[<h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>代理模式给某一个对象提供一个代理对象，并由代理对象控制对原对象的引用。它包括<strong>抽象主题，委托类，代理类</strong>三个核心角色。</p>
-<h1 id="结构"><a href="#结构" class="headerlink" title="结构"></a>结构</h1><p><img src="C:%5CUsers%5CAdministrator%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20200528210755896.png" alt="image-20200528210755896"></p>
+<h1 id="结构"><a href="#结构" class="headerlink" title="结构"></a>结构</h1><p><img src="https://yuanchangjian.github.io/cloudImage/images/20200608115447.png" alt="image-20200528210755896"></p>
 <p><strong>Subject</strong></p>
 <p>抽象主题</p>
 <p><strong>Proxy</strong><br>代理类</p>
