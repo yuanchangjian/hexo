@@ -67,6 +67,69 @@
       </tags>
   </entry>
   <entry>
+    <title>editorconfig规范代码</title>
+    <url>/2020/06/11/editorconfig%E8%A7%84%E8%8C%83%E4%BB%A3%E7%A0%81/</url>
+    <content><![CDATA[<h1 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h1><p>EditorConfig 可以帮助开发者在不同的编辑器和 IDE 之间定义和维护一致的代码风格。EditorConfig 包含一个用于定义代码格式的文件和一批编辑器插件，这些插件可以让编辑器读取配置文件并依此格式化代码。</p>
+<a id="more"></a>
+
+
+
+<h2 id="属性"><a href="#属性" class="headerlink" title="属性"></a>属性</h2><h3 id="indent-style"><a href="#indent-style" class="headerlink" title="indent_style"></a>indent_style</h3><p>缩进方式，可选值：</p>
+<ul>
+<li><code>tab</code></li>
+<li><code>space</code></li>
+</ul>
+<h3 id="indent-size"><a href="#indent-size" class="headerlink" title="indent_size"></a>indent_size</h3><p>缩进长度，可选值：</p>
+<ul>
+<li>整数</li>
+<li><code>tab</code></li>
+</ul>
+<h3 id="end-of-line"><a href="#end-of-line" class="headerlink" title="end_of_line"></a>end_of_line</h3><p>换行符，可选值：</p>
+<ul>
+<li><code>lf</code></li>
+<li><code>crlf</code></li>
+<li><code>cr</code></li>
+</ul>
+<h3 id="charset"><a href="#charset" class="headerlink" title="charset"></a>charset</h3><p>文件字符编码，可选值：</p>
+<ul>
+<li><code>latin1</code></li>
+<li><code>utf-8</code></li>
+<li><code>utf-16be</code></li>
+<li><code>utf-16le</code></li>
+<li><code>utf-8-bom</code></li>
+</ul>
+<h3 id="trim-trailing-whitespace"><a href="#trim-trailing-whitespace" class="headerlink" title="trim_trailing_whitespace"></a>trim_trailing_whitespace</h3><p>是否将行尾空格自动删除，可选值：</p>
+<ul>
+<li><code>true</code></li>
+<li><code>false</code></li>
+</ul>
+<h3 id="insert-final-newline"><a href="#insert-final-newline" class="headerlink" title="insert_final_newline"></a>insert_final_newline</h3><p>是否使文件以一个空白行结尾，可选值：</p>
+<ul>
+<li><code>true</code></li>
+<li><code>false</code></li>
+</ul>
+<h3 id="root"><a href="#root" class="headerlink" title="root"></a>root</h3><p>表明是最顶层的配置文件，发现设为 <code>true</code> 时，才会停止查找<code>.editorconfig</code> 文件。</p>
+<h2 id="个人常用配置"><a href="#个人常用配置" class="headerlink" title="个人常用配置"></a>个人常用配置</h2><p>在项目根目录新建<code>.editorconfig</code>文件：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># https:&#x2F;&#x2F;editorconfig.org</span><br><span class="line"></span><br><span class="line">root &#x3D; true</span><br><span class="line"></span><br><span class="line">[*]</span><br><span class="line">charset &#x3D; utf-8</span><br><span class="line">indent_style &#x3D; space</span><br><span class="line">indent_size &#x3D; 4</span><br><span class="line">end_of_line &#x3D; lf</span><br><span class="line">insert_final_newline &#x3D; true</span><br><span class="line">trim_trailing_whitespace &#x3D; true</span><br><span class="line"></span><br><span class="line">[*.md]</span><br><span class="line">insert_final_newline &#x3D; false</span><br><span class="line">trim_trailing_whitespace &#x3D; false</span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="编辑器启动EditorConfig插件"><a href="#编辑器启动EditorConfig插件" class="headerlink" title="编辑器启动EditorConfig插件"></a>编辑器启动EditorConfig插件</h1><ul>
+<li><p><a href="https://marketplace.visualstudio.com/items?itemName=EditorConfig.EditorConfig" target="_blank" rel="noopener">EditorConfig for VS Code</a></p>
+</li>
+<li><p>webstorm</p>
+<p>  File &gt; settings &gt; Editor &gt; Code Style &gt; Enable EditorConfig support</p>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>前端工程化</category>
+      </categories>
+      <tags>
+        <tag>editorconfig</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>代理模式</title>
     <url>/2020/05/28/%E4%BB%A3%E7%90%86%E6%A8%A1%E5%BC%8F/</url>
     <content><![CDATA[<h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>代理模式给某一个对象提供一个代理对象，并由代理对象控制对原对象的引用。它包括<strong>抽象主题，委托类，代理类</strong>三个核心角色。</p>

@@ -20,22 +20,20 @@
     var CONFIG = {"hostname":"yuanchangjian.github.io","root":"/","scheme":"Mist","version":"8.0.0-rc.2","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="简介semver 是 语义化版本（Semantic Versioning）规范 的一个实现，目前是由 npm 的团队维护，实现了版本和版本范围的解析、计算、比较。下面列举一个npm下vue的版本历史。">
+  <meta name="description" content="介绍EditorConfig 可以帮助开发者在不同的编辑器和 IDE 之间定义和维护一致的代码风格。EditorConfig 包含一个用于定义代码格式的文件和一批编辑器插件，这些插件可以让编辑器读取配置文件并依此格式化代码。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="语义化版本控制规范（SemVer）">
-<meta property="og:url" content="https://yuanchangjian.github.io/2020/05/19/%E8%AF%AD%E4%B9%89%E5%8C%96%E7%89%88%E6%9C%AC%E6%8E%A7%E5%88%B6%E8%A7%84%E8%8C%83%EF%BC%88SemVer%EF%BC%89/index.html">
+<meta property="og:title" content="editorconfig规范代码">
+<meta property="og:url" content="https://yuanchangjian.github.io/2020/06/11/editorconfig%E8%A7%84%E8%8C%83%E4%BB%A3%E7%A0%81/index.html">
 <meta property="og:site_name" content="Ycj&#39;s Blog">
-<meta property="og:description" content="简介semver 是 语义化版本（Semantic Versioning）规范 的一个实现，目前是由 npm 的团队维护，实现了版本和版本范围的解析、计算、比较。下面列举一个npm下vue的版本历史。">
+<meta property="og:description" content="介绍EditorConfig 可以帮助开发者在不同的编辑器和 IDE 之间定义和维护一致的代码风格。EditorConfig 包含一个用于定义代码格式的文件和一批编辑器插件，这些插件可以让编辑器读取配置文件并依此格式化代码。">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://yuanchangjian.github.io/cloudImage/images/20200519192502.png">
-<meta property="article:published_time" content="2020-05-19T10:04:53.000Z">
+<meta property="article:published_time" content="2020-06-11T14:26:56.000Z">
 <meta property="article:modified_time" content="2020-06-11T14:28:11.123Z">
 <meta property="article:author" content="Ycj">
-<meta property="article:tag" content="SemVer">
+<meta property="article:tag" content="editorconfig">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://yuanchangjian.github.io/cloudImage/images/20200519192502.png">
 
-<link rel="canonical" href="https://yuanchangjian.github.io/2020/05/19/%E8%AF%AD%E4%B9%89%E5%8C%96%E7%89%88%E6%9C%AC%E6%8E%A7%E5%88%B6%E8%A7%84%E8%8C%83%EF%BC%88SemVer%EF%BC%89/">
+<link rel="canonical" href="https://yuanchangjian.github.io/2020/06/11/editorconfig%E8%A7%84%E8%8C%83%E4%BB%A3%E7%A0%81/">
 
 
 <script id="page-configurations">
@@ -48,7 +46,7 @@
   };
 </script>
 
-  <title>语义化版本控制规范（SemVer） | Ycj's Blog</title>
+  <title>editorconfig规范代码 | Ycj's Blog</title>
   
 
 
@@ -201,7 +199,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://yuanchangjian.github.io/2020/05/19/%E8%AF%AD%E4%B9%89%E5%8C%96%E7%89%88%E6%9C%AC%E6%8E%A7%E5%88%B6%E8%A7%84%E8%8C%83%EF%BC%88SemVer%EF%BC%89/">
+    <link itemprop="mainEntityOfPage" href="https://yuanchangjian.github.io/2020/06/11/editorconfig%E8%A7%84%E8%8C%83%E4%BB%A3%E7%A0%81/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/lufei.jpg">
@@ -214,7 +212,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          语义化版本控制规范（SemVer）
+          editorconfig规范代码
         </h1>
 
         <div class="post-meta">
@@ -224,7 +222,7 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2020-05-19 18:04:53" itemprop="dateCreated datePublished" datetime="2020-05-19T18:04:53+08:00">2020-05-19</time>
+              <time title="创建时间：2020-06-11 22:26:56" itemprop="dateCreated datePublished" datetime="2020-06-11T22:26:56+08:00">2020-06-11</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -232,12 +230,12 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%89%88%E6%9C%AC%E7%AE%A1%E7%90%86/" itemprop="url" rel="index"><span itemprop="name">版本管理</span></a>
+                  <a href="/categories/%E5%89%8D%E7%AB%AF%E5%B7%A5%E7%A8%8B%E5%8C%96/" itemprop="url" rel="index"><span itemprop="name">前端工程化</span></a>
                 </span>
             </span>
 
           
-            <span id="/2020/05/19/%E8%AF%AD%E4%B9%89%E5%8C%96%E7%89%88%E6%9C%AC%E6%8E%A7%E5%88%B6%E8%A7%84%E8%8C%83%EF%BC%88SemVer%EF%BC%89/" class="post-meta-item leancloud_visitors" data-flag-title="语义化版本控制规范（SemVer）" title="阅读次数">
+            <span id="/2020/06/11/editorconfig%E8%A7%84%E8%8C%83%E4%BB%A3%E7%A0%81/" class="post-meta-item leancloud_visitors" data-flag-title="editorconfig规范代码" title="阅读次数">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -251,8 +249,8 @@
         <i class="far fa-comment"></i>
       </span>
     
-    <a title="disqus" href="/2020/05/19/%E8%AF%AD%E4%B9%89%E5%8C%96%E7%89%88%E6%9C%AC%E6%8E%A7%E5%88%B6%E8%A7%84%E8%8C%83%EF%BC%88SemVer%EF%BC%89/#disqus_thread" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2020/05/19/语义化版本控制规范（SemVer）/" itemprop="commentCount"></span>
+    <a title="disqus" href="/2020/06/11/editorconfig%E8%A7%84%E8%8C%83%E4%BB%A3%E7%A0%81/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2020/06/11/editorconfig规范代码/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -267,63 +265,57 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p><code>semver</code> 是 <a href="http://semver.org/lang/zh-CN/" target="_blank" rel="noopener">语义化版本（Semantic Versioning）规范</a> 的一个实现，目前是由 <code>npm</code> 的团队维护，实现了版本和版本范围的解析、计算、比较。下面列举一个<code>npm</code>下<code>vue</code>的版本历史。</p>
+        <h1 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h1><p>EditorConfig 可以帮助开发者在不同的编辑器和 IDE 之间定义和维护一致的代码风格。EditorConfig 包含一个用于定义代码格式的文件和一批编辑器插件，这些插件可以让编辑器读取配置文件并依此格式化代码。</p>
 <a id="more"></a>
 
-<p><img src="https://yuanchangjian.github.io/cloudImage/images/20200519192502.png" alt="image-20200519181754033"></p>
-<h1 id="版本格式"><a href="#版本格式" class="headerlink" title="版本格式"></a>版本格式</h1><ol>
-<li>主版本号：当你做了不兼容的 API 修改。（如：V2.6.11 -&gt; V3.0.0-alpha.0）</li>
-<li>次版本号：当你做了向下兼容的功能性新增。（如：V2.5.22 -&gt; V2.6.0）</li>
-<li>修订号：当你做了向下兼容的问题修正。（如：V2.6.10 -&gt; V2.6.11）</li>
-</ol>
-<h1 id="先行版本"><a href="#先行版本" class="headerlink" title="先行版本"></a>先行版本</h1><p>先行版本表示这个版本并非稳定，可以作为发布正式版之前的版本，格式是在修订版本号后面加上一个连接号<code>（-）</code>，再加上一连串以点（.）分割的标识符，标识符可以由英文、数字和连接号（[0-9A-Za-z-]）组成。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">2.6.0-beta.1</span><br><span class="line">3.0.0-alpha.0</span><br><span class="line">1.0.0-0.3.7</span><br><span class="line">1.0.0-x.7.z.92</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
 
-<p>以下是一些常见的先行版本号名称：</p>
+
+<h2 id="属性"><a href="#属性" class="headerlink" title="属性"></a>属性</h2><h3 id="indent-style"><a href="#indent-style" class="headerlink" title="indent_style"></a>indent_style</h3><p>缩进方式，可选值：</p>
 <ul>
-<li>alpha：是内部测试版,一般不向外部发布,会有很多Bug.一般只有测试人员使用。</li>
-<li>beta：也是测试版，这个阶段的版本会一直加入新的功能。在Alpha版之后推出。</li>
-<li>rc：（Release　Candidate)  系统平台上就是发行候选版本。RC版不会再加入新的功能了，主要着重于除错。</li>
+<li><code>tab</code></li>
+<li><code>space</code></li>
 </ul>
-<h1 id="版本编译元数据（可选）"><a href="#版本编译元数据（可选）" class="headerlink" title="版本编译元数据（可选）"></a>版本编译元数据（可选）</h1><p>版本编译元数据可以被标注在修订版或先行版本号之后，先加上一个<code>加号</code>再加上一连串以句点分隔的标识符来修饰。当判断版本的优先层级时，版本编译元数据可被忽略。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">1.0.0-alpha+001</span><br><span class="line">1.0.0+20130313144700</span><br><span class="line">1.0.0-beta+exp.sha.5114f85</span><br></pre></td></tr></table></figure>
-
-
-
-<h1 id="定义依赖版本号"><a href="#定义依赖版本号" class="headerlink" title="定义依赖版本号"></a>定义依赖版本号</h1><p>在 <a href="https://npmjs.com/" target="_blank" rel="noopener">npm</a> 的依赖的规则中，还有 <code>~</code>、<code>&gt;</code>、<code>&lt;</code>、<code>=</code>、<code>&gt;=</code>、<code>&lt;=</code>、<code>-</code>、<code>||</code>、<code>x</code>、<code>X</code>、<code>*</code> 等符号；当使用 <code>npm install XX</code> 时，被安装的依赖的版本号前会默认加上 <code>^</code> 符号。</p>
+<h3 id="indent-size"><a href="#indent-size" class="headerlink" title="indent_size"></a>indent_size</h3><p>缩进长度，可选值：</p>
 <ul>
-<li><code>^</code> ：表示同一主版本号中，不小于指定版本号的版本号</li>
+<li>整数</li>
+<li><code>tab</code></li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"> &#96;^2.2.1&#96; 对应主版本号为 2，不小于 &#96;2.2.1&#96; 的版本号，比如 &#96;2.2.1&#96;、&#96;2.2.2&#96;、&#96;2.3.0&#96; ,主版本号固定</span><br><span class="line">&#x2F;&#x2F; 当该依赖有最新版本时(eg:2.3.3)，npm install 会安装最新的依赖</span><br></pre></td></tr></table></figure>
-
+<h3 id="end-of-line"><a href="#end-of-line" class="headerlink" title="end_of_line"></a>end_of_line</h3><p>换行符，可选值：</p>
 <ul>
-<li><code>~</code> ：表示同一主版本号和次版本号中，不小于指定版本号的版本号</li>
+<li><code>lf</code></li>
+<li><code>crlf</code></li>
+<li><code>cr</code></li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#96;~2.2.1&#96; 对应主版本号为 2，次版本号为 2，不小于 &#96;2.2.1&#96; 的版本号，比如 &#96;2.2.1、2.2.2&#96;，主版本号和次版本号固定</span><br></pre></td></tr></table></figure>
-
-<p>常用的就是上述两种情况，拿vue做个例子：</p>
+<h3 id="charset"><a href="#charset" class="headerlink" title="charset"></a>charset</h3><p>文件字符编码，可选值：</p>
 <ul>
-<li>项目兼容vue发布的次版本和补丁版本：”vue”: “^2.5.0”</li>
-<li>项目只兼容vue发布的补丁版本：”vue”: “~2.5.0”（发布2.6.0不会更新）</li>
+<li><code>latin1</code></li>
+<li><code>utf-8</code></li>
+<li><code>utf-16be</code></li>
+<li><code>utf-16le</code></li>
+<li><code>utf-8-bom</code></li>
 </ul>
-<div class="note warning">
-            <p><strong>npm 中 package-lock.json 的一些坑</strong></p><p>在 npm install 后，会生成一个 package-lock.json 文件用于保存当前安装依赖的各种来源及版本号。</p><p>在 npm 5.4.2版本后，package-lock.json 的变动规则：</p><ul><li>当在 install dependency 的指定版本时，会自动更新 package-lock.json 文件中该 dependency 的 version 到指定的 version</li><li>当在 install dependency 的范围版本时，当前的 version 低于或等于 package-lock.json 文件中对应的 dependency 的 version 时，会安装 package-lock.json 中的 version；</li></ul><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">package.json</span><br><span class="line">&quot;antd&quot;: &quot;^3.6.1&quot;, &#x2F;&#x2F; eg：最新版本是 3.9.4</span><br><span class="line"></span><br><span class="line">package-lock.json</span><br><span class="line">&quot;antd&quot;: &quot;3.7.1&quot;,</span><br><span class="line"></span><br><span class="line">执行npm install 会安装 3.7.1 版本</span><br></pre></td></tr></table></figure><p>如果高于 package-lock.json 中对应的 dependency 的 version 时，会安装当前范围版本号中最高的版本，会更新 package-lock.json 文件中对应的版本号；</p><p>若版本使用<code>^</code>匹配符，想<code>临时</code>跳到某个固定版本，可以如下所示安装：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install --save antd@3.6.1</span><br></pre></td></tr></table></figure><p>若要固定版本，可以先删除<code>package-lock.json</code>，将<code>package.json</code>将antd改为<code>3.6.1</code>，不使用<code>匹配符</code>，执行<code>npm install</code></p>
-          </div>
-
-
-
-<h1 id="npm包发布"><a href="#npm包发布" class="headerlink" title="npm包发布"></a>npm包发布</h1><p>通常我们发布一个包到npm仓库时，我们的做法是先修改 <code>package.json</code> 为某个版本，然后执行 <code>npm publish</code> 命令。手动修改版本号的做法建立在你对Semver规范特别熟悉的基础之上，否则可能会造成版本混乱。npm 考虑到了这点，它提供了相关的命令来让我们更好的遵从Semver规范：</p>
+<h3 id="trim-trailing-whitespace"><a href="#trim-trailing-whitespace" class="headerlink" title="trim_trailing_whitespace"></a>trim_trailing_whitespace</h3><p>是否将行尾空格自动删除，可选值：</p>
 <ul>
-<li>升级补丁版本号：npm version patch</li>
-<li>升级小版本号：npm version minor</li>
-<li>升级大版本号：npm version major</li>
+<li><code>true</code></li>
+<li><code>false</code></li>
 </ul>
-<p>当执行 <code>npm publish</code> 时，会首先将当前版本发布到 <code>npm registry</code>，然后更新 <code>dist-tags.latest</code> 的值为新版本。</p>
-<p>当执行 <code>npm publish --tag=next</code> 时，会首先将当前版本发布到 <code>npm registry</code>，并且更新 <code>dist-tags.next</code> 的值为新版本。这里的 next 可以是任意有意义的命名（比如：v1.x、v2.x 等等）</p>
-<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><ul>
-<li><a href="https://semver.org/lang/zh-CN/" target="_blank" rel="noopener">语义化版本 2.0.0</a></li>
-<li><a href="https://www.jianshu.com/p/a7490344044f" target="_blank" rel="noopener">semver 语义化版本规范</a></li>
-<li><a href="https://segmentfault.com/a/1190000014405355" target="_blank" rel="noopener">Semver(语义化版本号)扫盲</a></li>
+<h3 id="insert-final-newline"><a href="#insert-final-newline" class="headerlink" title="insert_final_newline"></a>insert_final_newline</h3><p>是否使文件以一个空白行结尾，可选值：</p>
+<ul>
+<li><code>true</code></li>
+<li><code>false</code></li>
+</ul>
+<h3 id="root"><a href="#root" class="headerlink" title="root"></a>root</h3><p>表明是最顶层的配置文件，发现设为 <code>true</code> 时，才会停止查找<code>.editorconfig</code> 文件。</p>
+<h2 id="个人常用配置"><a href="#个人常用配置" class="headerlink" title="个人常用配置"></a>个人常用配置</h2><p>在项目根目录新建<code>.editorconfig</code>文件：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"># https:&#x2F;&#x2F;editorconfig.org</span><br><span class="line"></span><br><span class="line">root &#x3D; true</span><br><span class="line"></span><br><span class="line">[*]</span><br><span class="line">charset &#x3D; utf-8</span><br><span class="line">indent_style &#x3D; space</span><br><span class="line">indent_size &#x3D; 4</span><br><span class="line">end_of_line &#x3D; lf</span><br><span class="line">insert_final_newline &#x3D; true</span><br><span class="line">trim_trailing_whitespace &#x3D; true</span><br><span class="line"></span><br><span class="line">[*.md]</span><br><span class="line">insert_final_newline &#x3D; false</span><br><span class="line">trim_trailing_whitespace &#x3D; false</span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="编辑器启动EditorConfig插件"><a href="#编辑器启动EditorConfig插件" class="headerlink" title="编辑器启动EditorConfig插件"></a>编辑器启动EditorConfig插件</h1><ul>
+<li><p><a href="https://marketplace.visualstudio.com/items?itemName=EditorConfig.EditorConfig" target="_blank" rel="noopener">EditorConfig for VS Code</a></p>
+</li>
+<li><p>webstorm</p>
+<p>  File &gt; settings &gt; Editor &gt; Code Style &gt; Enable EditorConfig support</p>
+</li>
 </ul>
 
     </div>
@@ -340,7 +332,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="https://yuanchangjian.github.io/2020/05/19/%E8%AF%AD%E4%B9%89%E5%8C%96%E7%89%88%E6%9C%AC%E6%8E%A7%E5%88%B6%E8%A7%84%E8%8C%83%EF%BC%88SemVer%EF%BC%89/" title="语义化版本控制规范（SemVer）">https://yuanchangjian.github.io/2020/05/19/语义化版本控制规范（SemVer）/</a>
+    <a href="https://yuanchangjian.github.io/2020/06/11/editorconfig%E8%A7%84%E8%8C%83%E4%BB%A3%E7%A0%81/" title="editorconfig规范代码">https://yuanchangjian.github.io/2020/06/11/editorconfig规范代码/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
@@ -351,7 +343,7 @@
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/SemVer/" rel="tag"># SemVer</a>
+              <a href="/tags/editorconfig/" rel="tag"># editorconfig</a>
           </div>
 
         
@@ -360,13 +352,10 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2020/05/12/Hexo%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2%E7%B3%BB%E5%88%97%EF%BC%9A%EF%BC%88%E4%B8%89%EF%BC%89Typora-PicGo%E5%AE%9E%E7%8E%B0%E5%9B%BE%E7%89%87%E4%B8%8A%E4%BC%A0%E5%8A%9F%E8%83%BD/" rel="prev" title="Hexo搭建博客系列：（三）Typora+PicGo实现图片上传功能">
-      <i class="fa fa-chevron-left"></i> Hexo搭建博客系列：（三）Typora+PicGo实现图片上传功能
+    <a href="/2020/06/11/ESLint%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/" rel="prev" title="ESLint使用指南">
+      <i class="fa fa-chevron-left"></i> ESLint使用指南
     </a></div>
-      <div class="post-nav-item">
-    <a href="/2020/05/19/JavaScript%E6%A8%A1%E5%9D%97%E5%8C%96%E5%8E%86%E7%A8%8B/" rel="next" title="JavaScript模块化历程">
-      JavaScript模块化历程 <i class="fa fa-chevron-right"></i>
-    </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -432,7 +421,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#简介"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#版本格式"><span class="nav-number">2.</span> <span class="nav-text">版本格式</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#先行版本"><span class="nav-number">3.</span> <span class="nav-text">先行版本</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#版本编译元数据（可选）"><span class="nav-number">4.</span> <span class="nav-text">版本编译元数据（可选）</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#定义依赖版本号"><span class="nav-number">5.</span> <span class="nav-text">定义依赖版本号</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#npm包发布"><span class="nav-number">6.</span> <span class="nav-text">npm包发布</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考"><span class="nav-number">7.</span> <span class="nav-text">参考</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#介绍"><span class="nav-number">1.</span> <span class="nav-text">介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#属性"><span class="nav-number">1.1.</span> <span class="nav-text">属性</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#indent-style"><span class="nav-number">1.1.1.</span> <span class="nav-text">indent_style</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#indent-size"><span class="nav-number">1.1.2.</span> <span class="nav-text">indent_size</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#end-of-line"><span class="nav-number">1.1.3.</span> <span class="nav-text">end_of_line</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#charset"><span class="nav-number">1.1.4.</span> <span class="nav-text">charset</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#trim-trailing-whitespace"><span class="nav-number">1.1.5.</span> <span class="nav-text">trim_trailing_whitespace</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#insert-final-newline"><span class="nav-number">1.1.6.</span> <span class="nav-text">insert_final_newline</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#root"><span class="nav-number">1.1.7.</span> <span class="nav-text">root</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#个人常用配置"><span class="nav-number">1.2.</span> <span class="nav-text">个人常用配置</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#编辑器启动EditorConfig插件"><span class="nav-number">2.</span> <span class="nav-text">编辑器启动EditorConfig插件</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -696,9 +685,9 @@
 </script>
 <script>
   var disqus_config = function() {
-    this.page.url = "https://yuanchangjian.github.io/2020/05/19/%E8%AF%AD%E4%B9%89%E5%8C%96%E7%89%88%E6%9C%AC%E6%8E%A7%E5%88%B6%E8%A7%84%E8%8C%83%EF%BC%88SemVer%EF%BC%89/";
-    this.page.identifier = "2020/05/19/语义化版本控制规范（SemVer）/";
-    this.page.title = "语义化版本控制规范（SemVer）";
+    this.page.url = "https://yuanchangjian.github.io/2020/06/11/editorconfig%E8%A7%84%E8%8C%83%E4%BB%A3%E7%A0%81/";
+    this.page.identifier = "2020/06/11/editorconfig规范代码/";
+    this.page.title = "editorconfig规范代码";
     };
   NexT.utils.loadComments(document.querySelector('#disqus_thread'), () => {
     if (window.DISQUS) {
