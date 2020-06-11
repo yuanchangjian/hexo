@@ -240,6 +240,185 @@
       </tags>
   </entry>
   <entry>
+    <title>ESLint使用指南</title>
+    <url>/2020/06/11/ESLint%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/</url>
+    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p><code>ESLint</code>是最流行的<code>JavaScript Linter</code>。</p>
+<blockquote>
+<p>Linter 是检查代码风格/错误的小工具。其他类似的 Linter 工具还有：TSLint、stylelint。</p>
+</blockquote>
+<p>它包含三个功能：</p>
+<p>（1）check syntax</p>
+<p>（2）find problems</p>
+<p>前两个可以统称为 Code-quality rules，例如 <a href="http://eslint.org/docs/rules/no-unused-vars" target="_blank" rel="noopener">no-unused-vars </a>规则。</p>
+<p>（3）enforce code style</p>
+<p>最后一个可以称为 <strong>Formatting rules</strong> ，例如 <a href="http://eslint.org/docs/rules/keyword-spacing" target="_blank" rel="noopener">keyword-spacing</a> 规则。</p>
+<a id="more"></a>
+
+<h1 id="安装依赖"><a href="#安装依赖" class="headerlink" title="安装依赖"></a>安装依赖</h1><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">yarn add eslint --dev</span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="参数说明"><a href="#参数说明" class="headerlink" title="参数说明"></a>参数说明</h1><p>有两种主要的方式来配置 <code>ESLint</code>：</p>
+<ul>
+<li>代码注释（一般由编辑器修复，这种情况应考虑<code>.eslintrc.*</code>的配置，尽量不要有代码注释）</li>
+<li>配置文件<a href="https://eslint.bootcss.com/docs/user-guide/configuring#configuration-file-formats" target="_blank" rel="noopener"><code>.eslintrc.*</code></a>或<code>package.json</code>中指定<code>eslintConfig</code>字段</li>
+</ul>
+<p>有很多信息可以配置：</p>
+<ul>
+<li><strong>Environments</strong> - 指定脚本的运行环境。每种环境都有一组特定的预定义全局变量。</li>
+<li><strong>Globals</strong> - 脚本在执行期间访问的额外的全局变量。</li>
+<li><strong>Rules</strong> - 启用的规则及其各自的错误级别。</li>
+</ul>
+<div class="note danger">
+            <p>非常用参数未详细列举出来，有兴趣的自行<a href="https://eslint.bootcss.com/docs/user-guide/configuring" target="_blank" rel="noopener">官网</a>学习。</p>
+          </div>
+
+<h2 id="parseOptions-指定解析选项"><a href="#parseOptions-指定解析选项" class="headerlink" title="parseOptions - 指定解析选项"></a>parseOptions - 指定解析选项</h2><ul>
+<li><p><code>ecmaVersion</code> - 默认设置为 3，5（默认）， 你可以使用 6、7、8、9 或 10 来指定你想要使用的 ECMAScript 版本。你也可以用使用年份命名的版本号指定为 2015（同 6），2016（同 7），或 2017（同 8）或 2018（同 9）或 2019 (same as 10)</p>
+</li>
+<li><p><code>sourceType</code> - 设置为 <code>&quot;script&quot;</code> (默认) 或 <code>&quot;module&quot;</code>（如果你的代码是 ECMAScript 模块)。</p>
+</li>
+<li><p><code>ecmaFeatures</code> - 这是个对象，表示你想使用的额外的语言特性</p>
+<ul>
+<li><code>globalReturn</code> - 允许在全局作用域下使用 <code>return</code> 语句</li>
+<li><code>impliedStrict</code> - 启用全局 <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Strict_mode" target="_blank" rel="noopener">strict mode</a> (如果 <code>ecmaVersion</code> 是 5 或更高)</li>
+<li><code>jsx</code> - 启用 <a href="http://facebook.github.io/jsx/" target="_blank" rel="noopener">JSX</a></li>
+<li><code>experimentalObjectRestSpread</code> - 启用实验性的 <a href="https://github.com/sebmarkbage/ecmascript-rest-spread" target="_blank" rel="noopener">object rest/spread properties</a> 支持。</li>
+</ul>
+</li>
+</ul>
+<div class="note danger">
+            <p>支持 ES6 语法并不意味着同时支持新的 ES6 全局变量或类型（比如 <code>Set</code> 等新类型）。对于 ES6 语法，使用 <code>{ &quot;parserOptions&quot;: { &quot;ecmaVersion&quot;: 6 } }</code>；对于新的 ES6 全局变量，使用 <code>{ &quot;env&quot;:{ &quot;es6&quot;: true } }</code>。<code>{ &quot;env&quot;: { &quot;es6&quot;: true } }</code> 自动启用es6语法，但 <code>{ &quot;parserOptions&quot;: { &quot;ecmaVersion&quot;: 6 } }</code> 不自动启用es6全局变量。</p>
+          </div>
+
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    &quot;parserOptions&quot;: &#123;</span><br><span class="line">        &quot;ecmaVersion&quot;: 6,</span><br><span class="line">        &quot;sourceType&quot;: &quot;module&quot;,</span><br><span class="line">        &quot;ecmaFeatures&quot;: &#123;</span><br><span class="line">            &quot;jsx&quot;: true</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="parser-指定解析器"><a href="#parser-指定解析器" class="headerlink" title="parser - 指定解析器"></a>parser - 指定解析器</h2><ul>
+<li><a href="https://github.com/eslint/espree" target="_blank" rel="noopener">Espree</a></li>
+<li><a href="https://www.npmjs.com/package/esprima" target="_blank" rel="noopener">Esprima</a></li>
+<li><a href="https://www.npmjs.com/package/babel-eslint" target="_blank" rel="noopener">Babel-ESLint</a> - 一个对<a href="https://babeljs.io/" target="_blank" rel="noopener">Babel</a>解析器的包装，使其能够与 ESLint 兼容。</li>
+<li><a href="https://www.npmjs.com/package/@typescript-eslint/parser" target="_blank" rel="noopener">@typescript-eslint/parser</a> - 将 TypeScript 转换成与 estree 兼容的形式，以便在ESLint中使用。</li>
+</ul>
+<div class="note danger">
+            <p>Babel-ESLint官方说明了不要因为项目中使用了babel就使用该解析器。当ESLint解析器不能够支持某些实验性功能或者类型（Flow），才考虑使用Babel-ESLint解析器。</p>
+          </div>
+
+<p>例如，下面的配置指定了 Esprima 作为解析器：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    &quot;parser&quot;: &quot;esprima&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="env-指定环境"><a href="#env-指定环境" class="headerlink" title="env - 指定环境"></a>env - 指定环境</h2><p>一个环境定义了一组预定义的全局变量。常用的环境如下所示:</p>
+<ul>
+<li><code>browser</code> - 浏览器环境中的全局变量。</li>
+<li><code>node</code> - Node.js 全局变量和 Node.js 作用域</li>
+<li><code>es6</code> - 启用除了 modules 以外的所有 ECMAScript 6 特性（该选项会自动设置 <code>ecmaVersion</code> 解析器选项为 6）</li>
+<li><code>mocha</code> - 添加所有的 Mocha 测试全局变量。</li>
+<li><code>jquery</code> - jQuery 全局变量</li>
+<li>…</li>
+</ul>
+<p>例如，以下示例启用了 browser 和 Node.js 的环境：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    &quot;env&quot;: &#123;</span><br><span class="line">        &quot;browser&quot;: true,</span><br><span class="line">        &quot;node&quot;: true</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="globals-指定全局变量"><a href="#globals-指定全局变量" class="headerlink" title="globals - 指定全局变量"></a>globals - 指定全局变量</h2><p>当访问当前源文件内未定义的变量时，<a href="https://eslint.bootcss.com/docs/rules/no-undef" target="_blank" rel="noopener">no-undef</a> 规则将发出警告。如果你想在一个源文件里使用全局变量，推荐你在 ESLint 中定义这些全局变量，这样 ESLint 就不会发出警告了。</p>
+<p>对于每个全局变量键，将对应的值设置为 <code>&quot;writable&quot;</code> 以允许重写变量，或 <code>&quot;readonly&quot;</code> 不允许重写变量。例如：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    &quot;globals&quot;: &#123;</span><br><span class="line">        &quot;var1&quot;: &quot;writable&quot;,</span><br><span class="line">        &quot;var2&quot;: &quot;readonly&quot;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>可以使用字符串 <code>&quot;off&quot;</code> 禁用全局变量。例如，在大多数 ES2015 全局变量可用但 <code>Promise</code> 不可用的环境中，你可以使用以下配置:</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    &quot;env&quot;: &#123;</span><br><span class="line">        &quot;es6&quot;: true</span><br><span class="line">    &#125;,</span><br><span class="line">    &quot;globals&quot;: &#123;</span><br><span class="line">        &quot;Promise&quot;: &quot;off&quot;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<div class="note danger">
+            <p><strong>注意：</strong>要启用<a href="https://eslint.bootcss.com/docs/rules/no-global-assign" target="_blank" rel="noopener">no-global-assign</a>规则来禁止对只读的全局变量进行修改。</p>
+          </div>
+
+
+
+<h2 id="plugins-配置插件"><a href="#plugins-配置插件" class="headerlink" title="plugins - 配置插件"></a>plugins - 配置插件</h2><p>例如，指定<code>eslint-plugin-vue</code>插件检测vue代码：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    &quot;plugins&quot;: [</span><br><span class="line">        &quot;vue&quot;</span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="extends-规则继承"><a href="#extends-规则继承" class="headerlink" title="extends - 规则继承"></a>extends - 规则继承</h2><p>一个配置文件可以被基础配置中的已启用的规则继承。</p>
+<p><code>extends</code> 属性值可以是：</p>
+<ul>
+<li>指定配置的字符串(配置文件的路径、可共享配置的名称、<code>eslint:recommended</code> 或 <code>eslint:all</code>)</li>
+<li>字符串数组：每个配置继承它前面的配置</li>
+</ul>
+<p>例如，继承eslint推荐配置<code>eslint:recommended</code>，然后添加自定义的规则：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    &quot;extends&quot;: &quot;eslint:recommended&quot;，</span><br><span class="line">    &quot;rules&quot;: &#123;</span><br><span class="line">        &#x2F;&#x2F; enable additional rules</span><br><span class="line">        &quot;indent&quot;: [&quot;error&quot;, 4],</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="eslintignore-忽略文件"><a href="#eslintignore-忽略文件" class="headerlink" title="eslintignore - 忽略文件"></a>eslintignore - 忽略文件</h2><p>同gitignore。例如，忽略node_modules目录的检测：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">node_modules</span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="构建Lint工作流"><a href="#构建Lint工作流" class="headerlink" title="构建Lint工作流"></a>构建Lint工作流</h1><p>下面以vue项目为例，具体插件和设置还需根据项目的依赖来配置。</p>
+<h2 id="生成配置文件"><a href="#生成配置文件" class="headerlink" title="生成配置文件"></a>生成配置文件</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">eslint --init</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://yuanchangjian.github.io/cloudImage/images/20200610230949.png" alt="image-20200610221320271"></p>
+<h2 id="添加规则文件"><a href="#添加规则文件" class="headerlink" title="添加规则文件"></a>添加规则文件</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">module.exports &#x3D; &#123;</span><br><span class="line">    &quot;env&quot;: &#123;</span><br><span class="line">        &quot;browser&quot;: true,</span><br><span class="line">        &quot;es6&quot;: true</span><br><span class="line">    &#125;,</span><br><span class="line">    &quot;extends&quot;: [</span><br><span class="line">        &quot;eslint:recommended&quot;,</span><br><span class="line">        &quot;plugin:vue&#x2F;essential&quot;</span><br><span class="line">    ],</span><br><span class="line">    &quot;globals&quot;: &#123;</span><br><span class="line">        &quot;Atomics&quot;: &quot;readonly&quot;,</span><br><span class="line">        &quot;SharedArrayBuffer&quot;: &quot;readonly&quot;</span><br><span class="line">    &#125;,</span><br><span class="line">    &quot;parserOptions&quot;: &#123;</span><br><span class="line">        &quot;ecmaVersion&quot;: 2018,</span><br><span class="line">        &quot;sourceType&quot;: &quot;module&quot;</span><br><span class="line">    &#125;,</span><br><span class="line">    &quot;plugins&quot;: [</span><br><span class="line">        &quot;vue&quot;</span><br><span class="line">    ],</span><br><span class="line">    &quot;rules&quot;: &#123;</span><br><span class="line">    	&#x2F;&#x2F; 添加自定义规则，同一团队代码风格</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="添加忽略文件-eslintignore"><a href="#添加忽略文件-eslintignore" class="headerlink" title="添加忽略文件.eslintignore"></a>添加忽略文件<code>.eslintignore</code></h3><p>根据项目添加忽略目录，如：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">dist</span><br><span class="line">node_modules</span><br><span class="line">.idea</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="集成"><a href="#集成" class="headerlink" title="集成"></a><a href="https://eslint.bootcss.com/docs/user-guide/integrations" target="_blank" rel="noopener">集成</a></h2><h3 id="编辑器"><a href="#编辑器" class="headerlink" title="编辑器"></a>编辑器</h3><ul>
+<li><p>Visual Studio Code: <a href="https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint" target="_blank" rel="noopener">ESLint Extension</a></p>
+</li>
+<li><p>WebStorm</p>
+<p>  File &gt; settings &gt; Languages &amp; Frameworks&gt; Javascript &gt; Code Quality Tools &gt; ESLint</p>
+</li>
+</ul>
+<h3 id="构建工具"><a href="#构建工具" class="headerlink" title="构建工具"></a>构建工具</h3><h4 id="Rollup"><a href="#Rollup" class="headerlink" title="Rollup"></a>Rollup</h4><h5 id="安装rollup-plugin-eslint"><a href="#安装rollup-plugin-eslint" class="headerlink" title="安装rollup-plugin-eslint"></a>安装rollup-plugin-eslint</h5><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">yarn add rollup-plugin-eslint --dev</span><br></pre></td></tr></table></figure>
+
+<h5 id="用法"><a href="#用法" class="headerlink" title="用法"></a>用法</h5><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">import &#123; eslint &#125; from &quot;rollup-plugin-eslint&quot;;</span><br><span class="line"> </span><br><span class="line">export default &#123;</span><br><span class="line">  input: &quot;main.js&quot;,</span><br><span class="line">  plugins: [</span><br><span class="line">    eslint()</span><br><span class="line">  ]</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="Webpack"><a href="#Webpack" class="headerlink" title="Webpack"></a>Webpack</h4><h4 id="安装eslint-loader"><a href="#安装eslint-loader" class="headerlink" title="安装eslint-loader"></a>安装eslint-loader</h4><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">yarn add eslint-loader --dev</span><br></pre></td></tr></table></figure>
+
+<h4 id="用法-1"><a href="#用法-1" class="headerlink" title="用法"></a>用法</h4><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">module.exports &#x3D; &#123;</span><br><span class="line">  &#x2F;&#x2F; ...</span><br><span class="line">  module: &#123;</span><br><span class="line">    rules: [</span><br><span class="line">      &#123;</span><br><span class="line">        test: &#x2F;\.js$&#x2F;,</span><br><span class="line">        exclude: &#x2F;node_modules&#x2F;,</span><br><span class="line">        use: [&#39;babel-loader&#39;, &#39;eslint-loader&#39;],</span><br><span class="line">      &#125;,</span><br><span class="line">    ],</span><br><span class="line">  &#125;,</span><br><span class="line">  &#x2F;&#x2F; ...</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="Git-hooks"><a href="#Git-hooks" class="headerlink" title="Git hooks"></a>Git hooks</h1><h2 id="安装依赖-1"><a href="#安装依赖-1" class="headerlink" title="安装依赖"></a>安装依赖</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">yarn add -D husky lint-staged pretty-quick</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="配置package-json"><a href="#配置package-json" class="headerlink" title="配置package.json"></a>配置package.json</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">  &quot;scripts&quot;: &#123;</span><br><span class="line">...其他脚本命令</span><br><span class="line">      &quot;precommit&quot;: &quot;pretty-quick --staged&quot;</span><br><span class="line">  &#125;,</span><br><span class="line">  &quot;lint-staged&quot;: &#123;</span><br><span class="line">      &quot;src&#x2F;**&#x2F;*.&#123;js,jsx&#125;&quot;: [</span><br><span class="line">          &quot;eslint --fix&quot;,</span><br><span class="line">          &quot;git add&quot;</span><br><span class="line">      ]</span><br><span class="line">  &#125;,</span><br><span class="line">  &quot;husky&quot;: &#123;</span><br><span class="line">      &quot;hooks&quot;: &#123;</span><br><span class="line">          &quot;pre-commit&quot;: &quot;lint-staged&quot;</span><br><span class="line">      &#125;</span><br><span class="line">  &#125;,</span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="个人常用规则"><a href="#个人常用规则" class="headerlink" title="个人常用规则"></a>个人常用规则</h1><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    rules: &#123;</span><br><span class="line">        indent: [&#39;error&#39;, 4]</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><ul>
+<li><a href="https://eslint.bootcss.com/" target="_blank" rel="noopener">ESLint官网</a></li>
+<li><a href="https://www.cnblogs.com/xjnotxj/p/10828183.html" target="_blank" rel="noopener">VSCode 使用 ESLint + Prettier 来统一 JS 代码</a></li>
+<li><a href="https://zhuanlan.zhihu.com/p/53680918" target="_blank" rel="noopener">ESLint 工作原理探讨</a></li>
+<li><a href="https://github.com/AlloyTeam/eslint-config-alloy/blob/master/README.zh-CN.md" target="_blank" rel="noopener">AlloyTeam 规范</a></li>
+<li><a href="https://segmentfault.com/a/1190000022881634" target="_blank" rel="noopener">从零构建前端 Lint 工作流</a></li>
+<li><a href="https://coderwall.com/p/zq8jlq/eslint-pre-commit-hook" target="_blank" rel="noopener">Git Precommit Hook</a></li>
+</ul>
+]]></content>
+      <categories>
+        <category>前端工程化</category>
+      </categories>
+      <tags>
+        <tag>ESLint</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Hexo搭建博客系列：（一）搭建属于自己的博客网站</title>
     <url>/2020/05/11/Hexo%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2%E7%B3%BB%E5%88%97%EF%BC%9A%EF%BC%88%E4%B8%80%EF%BC%89%E6%90%AD%E5%BB%BA%E5%B1%9E%E4%BA%8E%E8%87%AA%E5%B7%B1%E7%9A%84%E5%8D%9A%E5%AE%A2%E7%BD%91%E7%AB%99/</url>
     <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>本教程是对Hexo+NexT博客部署到GitHub Pages的总结，你可以参照这个教程搭建出基本能用的博客网站，若你有自己的想法，可以自己参考相关文档进行个性化配置。针对后续我自己博客的个性化配置，我会在这一系列教程的其他教程中一一列举出来。</p>
