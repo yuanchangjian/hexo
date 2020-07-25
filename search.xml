@@ -427,6 +427,8 @@
     <title>链表从后往前遍历</title>
     <url>/2020/07/25/%E9%93%BE%E8%A1%A8%E4%BB%8E%E5%90%8E%E5%BE%80%E5%89%8D%E9%81%8D%E5%8E%86/</url>
     <content><![CDATA[<h1 id="例题"><a href="#例题" class="headerlink" title="例题"></a>例题</h1><p>现有一个链表结构:  1-&gt;2-&gt;3-&gt;4  尾结点+1，变成1-&gt;2-&gt;3-&gt;5, 但是要进位，就是1-&gt;2-&gt;3-&gt;9尾节点+1后变成1-&gt;2-&gt;4-&gt;0，以此类推；</p>
+<a id="more"></a>
+
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">function increaseLinkedList (head) &#123;</span><br><span class="line">  &#x2F;&#x2F; 尾结点当作进位</span><br><span class="line">  if (head &#x3D;&#x3D;&#x3D; null) return true;</span><br><span class="line"></span><br><span class="line">  &#x2F;&#x2F; 是否被进位</span><br><span class="line">  var isCarry &#x3D; increaseLinkedList(head.next);</span><br><span class="line">  if (!isCarry) return false;</span><br><span class="line"></span><br><span class="line">  head.val &#x3D; ++head.val % 10;</span><br><span class="line">  return head.val &#x3D;&#x3D;&#x3D; 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 
