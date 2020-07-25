@@ -1,12 +1,13 @@
 ---
 title: BFS和DFS
-date: 2020-05-19 10:06:03
+tags:
+  - BFS
+  - DFS
+  - LeetCode
 categories: 数据结构与算法
-tags: 
-	- BFS
-	- DFS
-	- LeetCode
+date: 2020-05-19 10:06:03
 ---
+
 
 下面我们通过一个二叉树层序遍历的题目来分析一下BFS和DFS方法的区别。
 
@@ -113,14 +114,11 @@ var levelOrder = function(root) {
 
 我们把每层遍历到的节点都放入到一个结果集中，最后返回这个结果集就可以了。
 
-时间复杂度： O(n)*O*(*n*)
-空间复杂度：O(n)*O*(*n*)
-
 
 
 # DFS（Deep First Search）深度优先搜索
 
-![0203_1.gif](https://pic.leetcode-cn.com/aeed09e12573ec00d83663bb4f77562e8904ac58cdb2cbe6e995f2ac33b12934-0203_1.gif)
+![1](https://yuanchangjian.github.io/cloudImage/images/20200725172214.gif)
 
  DFS 不是按照层次遍历的。为了让递归的过程中同一层的节点放到同一个列表中，在递归时要记录每个节点的深度 level。递归到新节点要把该节点放入 level 对应列表的末尾。
 
@@ -152,8 +150,7 @@ var levelOrder = function(root) {
 };
 ```
 
-时间复杂度：O(N)*O*(*N*)
-空间复杂度：O(h)*O*(*h*)，`h` 是树的高度
+
 
 # 总结
 
@@ -174,12 +171,6 @@ DFS的复杂度与BFS的复杂度大体一致，不同之处在于遍历的方�
 ## 思想
 
 思想上来说这两种方法都是穷竭列举所有的情况。
-
-
-
-## 使用场景
-
-DFS暂遇到的两个场景：层序遍历和最短路径（多源BFS）
 
 
 
